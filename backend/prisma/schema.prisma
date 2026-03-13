@@ -1,0 +1,176 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String     @id @default(uuid())
+  email         String     @unique
+  passwordHash  String
+  fullName      String
+  phone         String
+  licenseNumber String     @unique
+  role          String     @default("pharmacist")
+  isVerified    Boolean    @default(false)
+  refreshToken  String?
+  lastLoginAt   DateTime?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  pharmacies    Pharmacy[]
+
+  @@map("users")
+}
+
+model Pharmacy {
+  id              String    @id @default(uuid())
+  userId          String
+  osmId           String?
+  nameFr          String
+  nameAr          String
+  slug            String    @unique
+  addressFr       String
+  addressAr       String?
+  city            String
+  region          String
+  postcode        String?
+  latitude        Float
+  longitude       Float
+  phone           String
+  whatsapp        String?
+  email           String?
+  operatingHours  String
+  is24h           Boolean   @default(false)
+  licenseNumber   String
+  isActive        Boolean   @default(true)
+  photoUrl        String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime?
+
+  user            User              @relation(fields: [userId], references: [id])
+  stock           PharmacyStock[]
+  onDutySchedules OnDutySchedule[]
+  citizenReports  CitizenReport[]
+  searchLogs      SearchLog[]
+
+  @@map("pharmacies")
+}
+
+model Medication {
+  id                   String    @id @default(uuid())
+  nameFr               String
+  nameAr               String?
+  genericNameFr        String?
+  genericNameAr        String?
+  dci                  String?
+  category             String?
+  form                 String
+  dosage               String?
+  manufacturer         String?
+  requiresPrescription Boolean   @default(false)
+  isControlled         Boolean   @default(false)
+  barcode              String?   @unique
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+
+  stock           PharmacyStock[]
+  citizenReports  CitizenReport[]
+  alerts          Alert[]
+
+  @@map("medications")
+}
+
+model PharmacyStock {
+  id                     String    @id @default(uuid())
+  pharmacyId             String
+  medicationId           String
+  status                 String
+  quantite               Int       @default(0)
+  estimatedRestockHours  Int       @default(0)
+  notes                  String?
+  lastConfirmedAt        DateTime  @default(now())
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  pharmacy    Pharmacy    @relation(fields: [pharmacyId], references: [id])
+  medication  Medication  @relation(fields: [medicationId], references: [id])
+  reports     CitizenReport[]
+
+  @@unique([pharmacyId, medicationId])
+  @@map("pharmacy_stock")
+}
+
+model OnDutySchedule {
+  id          String    @id @default(uuid())
+  pharmacyId  String
+  dutyDate    DateTime
+  startTime   String
+  endTime     String
+  isOvernight Boolean   @default(true)
+  city        String
+  source      String    @default("manual")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  pharmacy    Pharmacy  @relation(fields: [pharmacyId], references: [id])
+
+  @@unique([pharmacyId, dutyDate])
+  @@map("on_duty_schedules")
+}
+
+model CitizenReport {
+  id           String    @id @default(uuid())
+  pharmacyId   String
+  medicationId String?
+  stockId      String?
+  reportType   String
+  comment      String?
+  reporterIp   String?
+  createdAt    DateTime  @default(now())
+
+  pharmacy    Pharmacy        @relation(fields: [pharmacyId], references: [id])
+  medication  Medication?     @relation(fields: [medicationId], references: [id])
+  stock       PharmacyStock?  @relation(fields: [stockId], references: [id])
+
+  @@map("citizen_reports")
+}
+
+model SearchLog {
+  id                  String    @id @default(uuid())
+  query               String
+  normalizedQuery     String?
+  latitude            Float?
+  longitude           Float?
+  city                String?
+  resultsCount        Int
+  selectedPharmacyId  String?
+  language            String    @default("fr")
+  createdAt           DateTime  @default(now())
+
+  selectedPharmacy    Pharmacy? @relation(fields: [selectedPharmacyId], references: [id])
+
+  @@map("search_logs")
+}
+
+model Alert {
+  id            String    @id @default(uuid())
+  medicationId  String
+  city          String
+  latitude      Float?
+  longitude     Float?
+  contactType   String
+  contactValue  String
+  isActive      Boolean   @default(true)
+  notifiedAt    DateTime?
+  expiresAt     DateTime
+  createdAt     DateTime  @default(now())
+
+  medication    Medication @relation(fields: [medicationId], references: [id])
+
+  @@map("alerts")
+}

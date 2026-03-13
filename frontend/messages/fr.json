@@ -1,0 +1,129 @@
+{
+  "home": {
+    "title": "PharmaFind",
+    "subtitle": "Trouvez votre médicament. Trouvez-le maintenant.",
+    "searchPlaceholder": "Rechercher un médicament (ex: Doliprane, Paracétamol…)",
+    "searchButton": "Rechercher",
+    "locationPrompt": "Utiliser ma position",
+    "citySelector": "Choisir une ville",
+    "onDutyButton": "Pharmacies de garde maintenant",
+    "onDutyBadge": "De garde"
+  },
+  "search": {
+    "resultsTitle": "Résultats pour \"{query}\"",
+    "noResults": "Aucune pharmacie trouvée avec \"{query}\" à proximité.",
+    "noResultsHint": "Essayez d'élargir le rayon de recherche ou de vérifier l'orthographe.",
+    "radius": "Rayon",
+    "sortBy": "Trier par",
+    "sortDistance": "Distance",
+    "sortFreshness": "Fraîcheur",
+    "filterStatus": "Statut",
+    "mapToggle": "Carte",
+    "listToggle": "Liste",
+    "distance": "{km} km",
+    "open": "Ouvert",
+    "closed": "Fermé",
+    "onDuty": "De garde"
+  },
+  "stock": {
+    "AVAILABLE": "Disponible",
+    "LOW_STOCK": "Stock faible",
+    "OUT_OF_STOCK": "Indisponible",
+    "ARRIVING_SOON": "Sur commande"
+  },
+  "freshness": {
+    "verified": "Vérifié",
+    "recent": "Récent",
+    "possibly_outdated": "Peut-être obsolète",
+    "unverified": "Non vérifié",
+    "updatedAt": "Mis à jour {time}"
+  },
+  "pharmacy": {
+    "stockTitle": "Médicaments disponibles",
+    "hoursTitle": "Horaires",
+    "directions": "Itinéraire",
+    "whatsapp": "WhatsApp",
+    "closed": "Fermé",
+    "open24h": "Ouvert 24h/24",
+    "prescription": "Sur ordonnance",
+    "controlled": "Substance contrôlée"
+  },
+  "feedback": {
+    "question": "Cette information était-elle exacte ?",
+    "yes": "Oui, exact",
+    "no": "Non, inexact",
+    "comment": "Commentaire (optionnel)",
+    "submit": "Envoyer",
+    "thanks": "Merci pour votre retour !"
+  },
+  "alert": {
+    "title": "Être notifié",
+    "description": "Recevez une notification quand \"{medication}\" est disponible à {city}.",
+    "email": "Email",
+    "phone": "Téléphone",
+    "contactPlaceholder": "Votre email ou téléphone",
+    "submit": "Me notifier",
+    "success": "Alerte créée ! Vous serez notifié dès disponibilité.",
+    "expires": "Expire dans 7 jours"
+  },
+  "onDuty": {
+    "title": "Pharmacies de garde",
+    "subtitle": "Pharmacies ouvertes maintenant",
+    "noResults": "Aucune pharmacie de garde trouvée pour cette zone.",
+    "callNow": "Appeler"
+  },
+  "auth": {
+    "loginTitle": "Connexion pharmacien",
+    "registerTitle": "Inscription pharmacien",
+    "email": "Email",
+    "password": "Mot de passe",
+    "fullName": "Nom complet",
+    "phone": "Téléphone (+212XXXXXXXXX)",
+    "licenseNumber": "N° CNOP",
+    "loginButton": "Se connecter",
+    "registerButton": "Créer un compte",
+    "noAccount": "Pas de compte ?",
+    "hasAccount": "Déjà un compte ?",
+    "register": "S'inscrire",
+    "login": "Se connecter",
+    "logout": "Déconnexion"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "stock": "Mon stock",
+    "profile": "Mon profil",
+    "analytics": "Statistiques",
+    "totalMedications": "Médicaments listés",
+    "weeklySearches": "Recherches cette semaine",
+    "confirmAll": "Tout confirmer",
+    "confirmAllHint": "Marque tous les stocks comme vérifiés maintenant",
+    "addMedication": "Ajouter un médicament",
+    "bulkUpdate": "Mise à jour groupée",
+    "saveChanges": "Enregistrer",
+    "lastUpdate": "Dernière mise à jour"
+  },
+  "errors": {
+    "loadFailed": "Chargement impossible. Veuillez réessayer.",
+    "notFound": "Page introuvable",
+    "serverError": "Erreur serveur. Veuillez réessayer.",
+    "retry": "Réessayer",
+    "offline": "Vous êtes hors ligne."
+  },
+  "common": {
+    "loading": "Chargement…",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "all": "Tout",
+    "none": "Aucun",
+    "yes": "Oui",
+    "no": "Non"
+  }
+}

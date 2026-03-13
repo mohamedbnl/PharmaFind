@@ -1,0 +1,159 @@
+pharmacie_id,osm_id,name,address,postcode,lat,lon,type_garde,is_garde,open_time,close_time
+1,node/2328215997,Pharmacie Anegay صيدلية أنغاي,8 Rue Siaghine,90000.0,35.7851172,-5.8124517,normal,0,08:30,20:00
+2,node/2328216020,Pharmacie Bab Bhar صيدلية باب البحر,Rue Bab El Assa,90000.0,35.7878722,-5.8117732,normal,0,08:30,20:00
+3,node/2328216145,Pharmacie Al Maghrib صيدلية المغرب,56 Rue de la Liberté شارع الحرية,90000.0,35.7826008,-5.8129687,normal,0,08:30,20:00
+4,node/2907705733,Pharmacie Moderne صيدلية العصرية,Place du 9 avril,90000.0,35.784065,-5.8126868,normal,0,08:30,20:00
+5,node/3118757839,Pharmacie Cervantes صيدلية سيرفانطيس,Rue Anoual زنقة انوال,90000.0,35.7826706,-5.8104385,garde_nuit,1,20:00,08:30
+6,node/4660303464,Pharmacie Masjid Al Azhar صيدلية مسجد الأزهر,Rue Abderahman Kawakibi,90000.0,35.7606341,-5.825484,normal,0,08:30,20:00
+7,node/4793814321,Pharmacie Al Aouama Al Gharbia صيدلية العوامة الغربية,Avenue Al Quds,90000.0,35.7261824,-5.8038898,normal,0,08:30,20:00
+8,node/4793814421,Pharmacie Al Hanae صيدلية الهناء,Avenue Al Quds,90000.0,35.7308435,-5.8029761,normal,0,08:30,20:00
+9,node/5018122422,Pharmacie Marbella صيدلية مربيا,Route de Tétouan,90000.0,35.7264593,-5.7564234,garde_nuit,1,20:00,08:30
+10,node/5043501022,Pharmacie De La Plage صيدلية الشاطئ,7 Avenue Yousef Bnou Tachafine,90000.0,35.778779,-5.8025272,normal,0,08:30,20:00
+11,node/5575040835,صيدلية اليسر,Boulevard Mohamed V,,35.7786487,-5.8079357,garde_nuit,1,20:00,08:30
+12,node/5577523877,Pharmacie du Soleil صيدلية الشمس,111 Boulevard Prince Heritier,90000.0,35.7748656,-5.810182,normal,0,08:30,20:00
+13,node/5591112169,Pharmacie du Conseil صيدلية النصيحة,16 Avenue Koweit,90000.0,35.7377338,-5.8085571,normal,0,08:30,20:00
+14,node/5593629055,Pharmacie Al Baraka صيدلية البركة,Place du Koweit,90000.0,35.7815245,-5.8211285,normal,0,08:30,20:00
+15,node/5595191913,Pharmacie Branes 2 صيدلية برانس,Avenue Ben Abi Zarae,90000.0,35.7614251,-5.8360408,normal,0,08:30,20:00
+16,node/5595586684,Pharmacie Sidi Boukhari صيدلية سيدي البخاري,Avenue Sidi Boukhari,90000.0,35.7829045,-5.8319132,garde_24h,1,00:00,23:59
+17,node/5603177820,صيدلية ياسين,Avenue Lait Ben Saad,90000.0,35.7696784,-5.8275932,normal,0,08:30,20:00
+18,node/5618527218,Pharmacie Sidi Bouwafi صيدلية سيدي بوافي,63 Avenue Abou El Kacem Chrif Sebti,90000.0,35.7650061,-5.8235157,normal,0,08:30,20:00
+19,node/5620338133,Pharmacie Afilal صيدلية أفيلال,30 Avenue Allal El Fassi شارع علال الفاسي,90000.0,35.7619903,-5.7998232,normal,0,08:30,20:00
+20,node/5620813889,Pharmacie Metioui صيدلية المتيوي,153 Avenue Mohamed V,90000.0,35.7748294,-5.7980371,normal,0,08:30,20:00
+21,node/5622780145,Pharmacie Touzani صيدلية التوزاني,Route de Tétouan,90000.0,35.7586041,-5.7933354,normal,0,08:30,20:00
+22,node/8773605926,Pharmacie Al Hamd صيدلية الحمد,Avenue des Forces Armées Royales شارع الجيش الملكي,90000.0,35.7355071,-5.8587766,garde_24h,1,00:00,23:59
+23,node/8779150287,Pharmacie Dar Tounsi صيدلية دار التونسي,Avenue Abdeslam Ben Bouhout,90002.0,35.7525722,-5.7988798,normal,0,08:30,20:00
+24,node/8779185690,Pharmacie La Source صيدلية المنبع,Rue Al Quadissia,90000.0,35.7421059,-5.7966406,normal,0,08:30,20:00
+25,node/8786480316,Pharmacie Route El Aouama صيدلية طريق العوامة,Avenue Al Quds شارع القدس,90000.0,35.7339531,-5.8018479,normal,0,08:30,20:00
+26,node/8786530032,Pharmacie Zineb صيدلية زينب,Avenue Aicha Al-Moussafir,90000.0,35.7344339,-5.8052226,garde_nuit,1,20:00,08:30
+27,node/8789247117,Pharmacie Al Hambra صيدلية الحمراء,Avenue Aicha Al-Moussafir,90000.0,35.7389882,-5.8055448,normal,0,08:30,20:00
+28,node/8789329017,Pharmacie Al Aouda صيدلية العودة,Rue Tunisie زنقة تونس,90000.0,35.7470338,-5.8057471,garde_nuit,1,20:00,08:30
+29,node/8789330443,Pharmacie Hamza صيدلية حمزة,33 Rue Yemen,90000.0,35.7482557,-5.8017203,normal,0,08:30,20:00
+30,node/8789797362,Pharmacie Anoual صيدلية أنوال,26 Avenue Al Quds شارع القدس,90000.0,35.750137,-5.7993912,normal,0,08:30,20:00
+31,node/8789866011,Pharmacie Annour صيدلية النور,15 Rue Mauritanie,90000.0,35.7447193,-5.8017768,normal,0,08:30,20:00
+32,node/8789935713,Pharmacie Sania صيدلية السانيا,Avenue Aicha Al-Moussafir,90000.0,35.7429855,-5.8060324,normal,0,08:30,20:00
+33,node/8789946332,Pharmacie El Aouama صيدلية العوامة,Boulevard Royaume d'Arabie Saoudite,90000.0,35.7433347,-5.7997666,normal,0,08:30,20:00
+34,node/8790084574,Pharmacie Jirari صيدلية الجيراري,77 Avenue Aicha Al-Moussafir,90000.0,35.7488173,-5.80866,normal,0,08:30,20:00
+35,node/8790144029,Pharmacie Afriquia صيدلية إفريقيا,44 Avenue Moulay Ali Cherif,90000.0,35.752572,-5.8070116,normal,0,08:30,20:00
+36,node/8790161332,Pharmacie Moulay Ali Cherif صيدلية مولي علي الشريف,78 Avenue Moulay Ali Cherif,90000.0,35.7515983,-5.8020735,normal,0,08:30,20:00
+37,node/8790182886,Pharmacie Fares صيدلية فارس,34 Avenue Abdeslam Ben Bouhout,90000.0,35.7555289,-5.7948987,garde_nuit,1,20:00,08:30
+38,node/8790225817,Pharmacie du Quartier صيدلية الحي,56 Avenue R'gaia,90000.0,35.7572738,-5.7965159,normal,0,08:30,20:00
+39,node/8791671580,Pharmacie Irchad صيدلية الإرشاد,Avenue R'gaia,90002.0,35.7553991,-5.7989719,garde_nuit,1,20:00,08:30
+40,node/8791780067,Pharmacie Al Raha صيدلية الراحة,115 Boulevard Tarik Ibn Ziad شارع طارق بن زياد,90000.0,35.7660064,-5.8049135,normal,0,08:30,20:00
+41,node/8791808232,Pharmacie Passadena صيدلية باسادينا,Route de Tétouan,90023.0,35.7660792,-5.7995678,normal,0,08:30,20:00
+42,node/8791852156,Grande Pharmacie Rif صيدلية الريف الكبرى,17 Avenue Moulay Ali Cherif,90000.0,35.7539222,-5.8100232,normal,0,08:30,20:00
+43,node/8791853805,Pharmacie Benallal صيدلية ابن علال,127 Boulevard Fatima Zahra,90002.0,35.7554299,-5.8020759,normal,0,08:30,20:00
+44,node/8791867819,Pharmacie Hay Bouhout صيدلية حي بوحوت,Avenue Abdelkhalek Torres,90000.0,35.7553348,-5.8055756,normal,0,08:30,20:00
+45,node/8792314823,Pharmacie de la Santé صيدلية الصحة,Boulevard Tarik Ibn Ziad شارع طارق بن زياد,90000.0,35.7581749,-5.8015535,normal,0,08:30,20:00
+46,node/8792374279,Pharmacie Al Hikma صيدلية الحكمة,25 Rue Omar El Mokhtar,90000.0,35.7591814,-5.8048347,normal,0,08:30,20:00
+47,node/8792399569,Pharmacie Drissia صيدلية الإدريسية,42 Boulevard Tarik Ibn Ziad شارع طارق بن زياد,90000.0,35.7622996,-5.8034792,normal,0,08:30,20:00
+48,node/8792404870,Pharmacie du Parc صيدلية الروض,Boulevard Moulay Soulayman,90000.0,35.7630107,-5.8126443,normal,0,08:30,20:00
+49,node/8792431649,Pharmacie Province صيدلية العمالة,38 Rue de la Province,90000.0,35.7643841,-5.8082636,normal,0,08:30,20:00
+50,node/8792433383,Pharmacie Al Kodss صيدلية القدس,51 Rue Mansour Ben Abi Amir,90000.0,35.7625622,-5.8065548,normal,0,08:30,20:00
+51,node/8792466392,Pharmacie Assalam صيدلية السلام,26 Rue Oued Ouargha شارع وادي ورغة,90000.0,35.7518181,-5.8116118,normal,0,08:30,20:00
+52,node/8795156062,Pharmacie Zaoudia صيدلية الزاودية,42 Avenue Achouhada,90000.0,35.7555978,-5.8166095,normal,0,08:30,20:00
+53,node/8811617405,Pharmacie Beni Makada صيدلية بني مكادة,152 Boulevard Moulay Soulayman,90026.0,35.7591748,-5.8128161,normal,0,08:30,20:00
+54,node/8811650131,Pharmacie Mabrouka صيدلية مبروكة,35 Rue Ai Benbtaher Abih,90000.0,35.7582633,-5.8147929,garde_nuit,1,20:00,08:30
+55,node/8811706507,Pharmacie Ibn Annafis صيدلية بن النفيس,29 Rue My Tahar Ben Abdelkrim Boughaz,90000.0,35.7613621,-5.8172393,normal,0,08:30,20:00
+56,node/8811798586,Pharmacie Préfecture Beni Makada صيدلية عمالة بني مكادة,Rue El Hind,90000.0,35.7418415,-5.8097779,garde_24h,1,00:00,23:59
+57,node/8811803855,Pharmacie Al Fath صيدلية الفتح,26 Boulevard Royaume d'Arabie Saoudite,90000.0,35.7421352,-5.8125651,normal,0,08:30,20:00
+58,node/8811814167,Pharmacie Badr صيدلية بدر,49 Rue El Hind,90000.0,35.7450738,-5.8094117,normal,0,08:30,20:00
+59,node/8811910202,Pharmacie Ouled Allal صيدلية أولاد علال,Boulevard Royaume d'Arabie Saoudite,90016.0,35.7435833,-5.8152877,garde_nuit,1,20:00,08:30
+60,node/8812208759,Pharmacie Nouvelle الصيدلية الجديدة,Rue 4 زنقة,90000.0,35.7573328,-5.8242892,normal,0,08:30,20:00
+61,node/8812272864,Pharmacie Anas صيدلية أنس,78 Avenue El Hoceima,90000.0,35.751932,-5.8318449,normal,0,08:30,20:00
+62,node/8812391021,Pharmacie Chems Ahlan صيدلية شمس أهلا,Rue Al Fidae,90000.0,35.7423713,-5.8384262,normal,0,08:30,20:00
+63,node/8812421496,Grande Pharmacie Assia صيدلية اسيا الكبرى,Boulevard Royaume d'Arabie Saoudite,90000.0,35.7444463,-5.8328432,garde_nuit,1,20:00,08:30
+64,node/8812469308,Pharmacie Taferssiti صيدلية تافرسيتي,Avenue Al Afw,90000.0,35.7414332,-5.8336189,normal,0,08:30,20:00
+65,node/8812951614,Pharmacie Annasr صيدلية النصر,Avenue Martil,90000.0,35.7504079,-5.8295296,normal,0,08:30,20:00
+66,node/8812993151,Pharmacie Ahlan صيدلية أهلا,Boulevard Royaume d'Arabie Saoudite,90022.0,35.7475809,-5.8404456,normal,0,08:30,20:00
+67,node/8813009404,Pharmacie Erradi صيدلية الراضي,Avenue Nigeria,90000.0,35.7486334,-5.8376615,garde_nuit,1,20:00,08:30
+68,node/8814684096,Pharmacie Hay Ouarda صيدلية حي الوردة,Avenue Moulay Ali Cherif,90000.0,35.7538142,-5.818627,normal,0,08:30,20:00
+69,node/8814699761,Pharmacie Madrid صيدلية مدريد,Rue Iran زنقة إيران,90000.0,35.7527334,-5.8220466,normal,0,08:30,20:00
+70,node/8814761689,Pharmacie Ghailane صيدلية غيلان,41 Rue Malaisie,90000.0,35.7516884,-5.8184929,garde_24h,1,00:00,23:59
+71,node/8815036421,Pharmacie Al Jamae صيدلية الجامع,Boulevard Royaume d'Arabie Saoudite,90000.0,35.7432827,-5.82036,normal,0,08:30,20:00
+72,node/8817736187,Pharmacie Bir Chifae صيدلية بير الشفاء,Boulevard Royaume d'Arabie Saoudite,90000.0,35.7428183,-5.8259495,garde_24h,1,00:00,23:59
+73,node/8817949327,Pharmacie Andalucia صيدلية الأندلسية,Rue 1 زنقة,90000.0,35.7312268,-5.8070085,garde_nuit,1,20:00,08:30
+74,node/8818883564,Pharmacie Tanmia صيدلية التنمية,Route de Tétouan,90000.0,35.7374112,-5.7657254,normal,0,08:30,20:00
+75,node/8818900253,Pharmacie Jihane صيدلية جيهان,Route de Tétouan,90000.0,35.7418848,-5.7754502,normal,0,08:30,20:00
+76,node/8818917918,Pharmacie M'Ghogha صيدلية مغوغة,Route de Tétouan,90000.0,35.7436011,-5.7780437,garde_nuit,1,20:00,08:30
+77,node/8821512586,Pharmacie Zone Industrielle صيدلية الحي الصناعي,Route de Tétouan,90000.0,35.7456342,-5.7826468,garde_nuit,1,20:00,08:30
+78,node/8821966651,Pharmacie Ben Ayad صيدلية بن عياد,Rue Plage Kaa Asrass,90000.0,35.7704222,-5.7719122,normal,0,08:30,20:00
+79,node/8821980831,Pharmacie Perle de Méditerranée صيدلية لؤلؤة المتوسط,Rue Plage Ain Addaib,90000.0,35.7673647,-5.7610958,normal,0,08:30,20:00
+80,node/8822009723,Pharmacie Meftah El Khair صيدلية مفتاح الخير,Rue Plage Akwasse Briech,90000.0,35.7679104,-5.7733356,normal,0,08:30,20:00
+81,node/8822017841,صيدلية البحر الابيض المتوسط,Rue Plage Oualidia,90000.0,35.7691537,-5.7674069,normal,0,08:30,20:00
+82,node/8824569028,Pharmacie El Alia صيدلية العالية,37 Rue Ibn Al Kadi زنقة ابن القاضي,90000.0,35.7636391,-5.794075,normal,0,08:30,20:00
+83,node/8825161696,Pharmacie Saada صيدلية السعادة,3 Route de Tétouan,90000.0,35.7632332,-5.7958386,normal,0,08:30,20:00
+84,node/8825173122,Pharmacie Charf صيدلية شرف,Avenue Yacoub El Mansour,90000.0,35.7664721,-5.7940716,normal,0,08:30,20:00
+85,node/8825181780,Pharmacie Jardins Andalous صيدلية حدائق الأندلس,Avenue Mohammed VI شارع محمد السادس,90000.0,35.774374,-5.7843316,garde_24h,1,00:00,23:59
+86,node/8825407656,Pharmacie Laaziza صيدلية العزيزة,Rue Moulay Hicham,90000.0,35.772023,-5.7951018,normal,0,08:30,20:00
+87,node/8825642480,Pharmacie Al Andalous صيدلية الأندلس,118 Boulevard Mohamed V شارع محمد الخامس,90000.0,35.7757811,-5.8015618,normal,0,08:30,20:00
+88,node/8825782900,Pharmacie Moulay Youssef صيدلية مولاي يوسف,Boulevard Moulay Youssef,90000.0,35.7700159,-5.8057085,normal,0,08:30,20:00
+89,node/8825811268,Pharmacie Phardet صيدلية فارضت,147 Boulevard de Fés,90000.0,35.7705717,-5.8141986,normal,0,08:30,20:00
+90,node/8827335717,Pharmacie Al Amal صيدلية الأمل,20 Avenue Moulay Abdelaziz,90000.0,35.7622384,-5.8194224,normal,0,08:30,20:00
+91,node/8827367780,Pharmacie Place du Maroc صيدلية ساحة المغرب,Avenue Moulay Abdelaziz,90000.0,35.7657382,-5.8163376,garde_nuit,1,20:00,08:30
+92,node/8827370704,Avenue Youssef Ibn Tachfine شارع يوسف بن تاشفين,96 Avenue Ibn Tachfine,90000.0,35.7710518,-5.8031016,garde_24h,1,00:00,23:59
+93,node/8827390649,Pharmacie Jade صيدلية جاد,rue Ibn Ajroum,90000.0,35.772407,-5.8053327,normal,0,08:30,20:00
+94,node/8827576257,Pharmacie Al Farabi صيدلية الفرابي,Avenue Omar Bnou Khattab,90000.0,35.7723097,-5.8076621,normal,0,08:30,20:00
+95,node/8827725016,Pharmacie La Wilaya صيدلية الولاية,24 Avenue de la Marche Verte شارع المسيرة الخضراء,90000.0,35.7725945,-5.8113934,normal,0,08:30,20:00
+96,node/8827810948,Pharmacie Ariha صيدلية أريحا,31 Boulevard Moulay Youssef,90000.0,35.771005,-5.8113856,normal,0,08:30,20:00
+97,node/8827856238,Pharmacie Jamila صيدلية جميلة,Avenue de Fès,90000.0,35.7729531,-5.8138968,normal,0,08:30,20:00
+98,node/8827956926,Pharmacie Granada صيدلية غرناطة,18 Rue Tehran,90000.0,35.7760393,-5.8080033,normal,0,08:30,20:00
+99,node/8827981343,Grande Pharmacie Zeroual صيدلية زروال الكبرى,69 Avenue de Fès,90000.0,35.7760357,-5.8140097,normal,0,08:30,20:00
+100,node/8828006544,Pharmacie du Lycée صيدلية الليسي,15 Rue Allal Ben Abdallah,90000.0,35.7781229,-5.8096733,normal,0,08:30,20:00
+101,node/8828049938,Grande Pharmacie Pasteur الصيدلية الكبرى باستور,Place de France,90000.0,35.7810778,-5.8123201,garde_24h,1,00:00,23:59
+102,node/8828063163,Pharmacie Centrale الصيدلية المركزية,48 Boulevard Pasteur,90000.0,35.780116,-5.8100992,normal,0,08:30,20:00
+103,node/8828065054,Pharmacie de Paris صيدلية باريس,Place de France,90000.0,35.78087,-5.8122742,normal,0,08:30,20:00
+104,node/8828345028,Pharmacie Ibn Rochd صيدلية بن رشد,Rue d'Angleterre,90000.0,35.778412,-5.8191224,normal,0,08:30,20:00
+105,node/8829698794,Pharmacie M'sallah صيدلية المصلى,45 Avenue Sidi Mohamed Ben Abdellah,90000.0,35.7743237,-5.8175644,normal,0,08:30,20:00
+106,node/8829713219,Pharmacie Ibn khatib صيدلية ابن الخطيب,24 Avenue Docteur Faraj,90000.0,35.7753514,-5.8201833,normal,0,08:30,20:00
+107,node/8829742776,Pharmacie El Kindy صيدلية الكندي,136 Avenue Haroun Errachid,90000.0,35.7730008,-5.8218784,normal,0,08:30,20:00
+108,node/8829760068,Pharmacie Val Fleuri صيدلية فال فلوري,Boulevard Moulay Rachid شارع مولاي رشيد,90000.0,35.7769023,-5.8283848,normal,0,08:30,20:00
+109,node/8829816556,Pharmacie Chifae صيدلية الشفاء,Boulevard Moulay Rachid شارع مولاي رشيد,90000.0,35.7789399,-5.825752,normal,0,08:30,20:00
+110,node/8829838789,Pharmacie Souk El Bakar صيدلية سوق البقر,46 Avenue Sidi Amar,90000.0,35.7790739,-5.8308461,garde_24h,1,00:00,23:59
+111,node/8829854252,Pharmacie Mister Khouch صيدلية مستر خوش,36 Avenue d'Anfa,90000.0,35.7738241,-5.8327767,normal,0,08:30,20:00
+112,node/8829858194,Pharmacie Camelia صيدلية كاميليا,8 Boulevard Moulay Rachid شارع مولاي رشيد,90000.0,35.7730293,-5.8296408,normal,0,08:30,20:00
+113,node/8831916725,Pharmacie Al Imam Malik صيدلية إمام مالك,Avenue Abou El Kacem Chrif Sebti,90000.0,35.7621172,-5.8222234,normal,0,08:30,20:00
+114,node/8832041793,Pharmacie Casabarata صيدلية كازاباراتا,58 Avenue Moulay Hafid Ibn Abdelhafid,90000.0,35.767018,-5.8213004,normal,0,08:30,20:00
+115,node/8832649901,Pharmacie Anfa صيدلية أنفا,23 Avenue Haroun Errachid,90000.0,35.7689049,-5.8171629,normal,0,08:30,20:00
+116,node/8832663748,Pharmacie Al Ghazali صيدلية الغزالي,73 Avenue Haroun Errachid,90000.0,35.7697558,-5.8211379,normal,0,08:30,20:00
+117,node/8832680393,Grande Pharmacie Souani صيدلية السواني الكبرى,43 Avenue d'Anfa,90000.0,35.7701548,-5.8242214,normal,0,08:30,20:00
+118,node/8833158375,Grande Pharmacie Branes صيدلية برانص الكبرى,21 Boulevard Faisal Ibn Abdelaziz,90000.0,35.7628519,-5.8249922,normal,0,08:30,20:00
+119,node/8833275716,Pharmacie Inas صيدلية إيناس,30 Avenue Ben Abi Zarae,90000.0,35.7599922,-5.830995,normal,0,08:30,20:00
+120,node/8835929408,Pharmacie Ibn Batouta صيدلية ابن بطوطة,134 Rue Ibn Ardoune,90000.0,35.7628179,-5.8320191,normal,0,08:30,20:00
+121,node/8835940978,Pharmacie Ibn Barrajan صيدلية ابن برجان,41 Rue des Cedres,90000.0,35.7577169,-5.8329304,normal,0,08:30,20:00
+122,node/8835944289,Pharmacie Atlas صيدلية أطلس,16 Rue Ibn Ardoune,90000.0,35.7650926,-5.8279345,garde_nuit,1,20:00,08:30
+123,node/8836010982,Pharmacie Sanawbar صيدلية الصنوبر,79 Rue des Pins,90000.0,35.7574911,-5.8369439,normal,0,08:30,20:00
+124,node/8836057774,Pharmacie Al Yasmine صيدلية الياسمين,Avenue de Genévriers,90000.0,35.7571792,-5.8404784,normal,0,08:30,20:00
+125,node/8836095369,Pharmacie Narjiss صيدلية نرجيس,55 Avenue de Genévriers,90000.0,35.7556071,-5.8344612,normal,0,08:30,20:00
+126,node/8836101798,Pharmacie Salaheddine صيدلية صلاح الدين,Rue Fkih Ben Mekki,90000.0,35.7544787,-5.8376607,normal,0,08:30,20:00
+127,node/8836267235,Pharmacie Fayna صيدلية فاينة,Rue Forêt Eucalyptus,90000.0,35.7607275,-5.8396831,normal,0,08:30,20:00
+128,node/8838704488,Pharmacie Moncef صيدلية منصف,Avenue des Forces Armées Royales شارع الجيش الملكي,90000.0,35.7505782,-5.8389402,normal,0,08:30,20:00
+129,node/8838784762,Pharmacie Marjane Tanger صيدلية مرجان طنجة,Avenue des Forces Armées Royales شارع الجيش الملكي,90000.0,35.7464496,-5.8440326,garde_nuit,1,20:00,08:30
+130,node/8839214794,Pharmacie Chorafa صيدلية الشرفاء,Boulevard Moulay Rachid شارع مولاي رشيد,90000.0,35.7475556,-5.8589924,normal,0,08:30,20:00
+131,node/8839260234,Pharmacie Tanja Al Koubra صيدلية طنجة الكبرى,Boulevard Moulay Rachid شارع مولاي رشيد,90000.0,35.7525128,-5.8522603,garde_nuit,1,20:00,08:30
+132,node/8839316729,Pharmacie San Francisco صيدلية سان فرانسيسكو,Avenue Habib Bourguiba,90000.0,35.7807498,-5.8240771,normal,0,08:30,20:00
+133,node/8839346756,Pharmacie Aïn Hayani صيدلية عين الحياني,Rue Imam Kastalani,90000.0,35.7828892,-5.8282247,garde_24h,1,00:00,23:59
+134,node/8839372759,Pharmacie Imam Mouslim صيدلية إمام مسلم,87 Rue Imam Mouslim زنقة الإمام مسلم,90005.0,35.7854093,-5.8293717,normal,0,08:30,20:00
+135,node/8839416124,Pharmacie Arrazi صيدلية الرازي,Boulevard Moulay Rachid شارع مولاي رشيد,90000.0,35.7637104,-5.8378925,normal,0,08:30,20:00
+136,node/8839436512,Pharmacie Annajat صيدلية النجاة,114 Boulevard Moulay Rachid شارع مولاي رشيد,90000.0,35.7699613,-5.831943,normal,0,08:30,20:00
+137,node/8840219414,Pharmacie Tarik El Moujahidin صيدلية طريق المجاهدين,Rue Al-Moujahidine المجاهدين,90000.0,35.7699893,-5.8437546,normal,0,08:30,20:00
+138,node/8840252271,Pharmacie Al Ihssane صيدلية الإحسان,Rue Boutrika,90000.0,35.7577533,-5.8527663,normal,0,08:30,20:00
+139,node/8843257271,Pharmacie Bouarraquia صيدلية بوعراقية,34 Avenue Hassan II شارع الحسن الثاني,90000.0,35.7825789,-5.8179886,normal,0,08:30,20:00
+140,node/8843343490,Pharmacie Khosafat صيدلية خوصافات,53 Avenue Hassan I,90000.0,35.7857958,-5.8161579,garde_24h,1,00:00,23:59
+141,node/8843349956,Pharmacie Ibn Sina صيدلية ابن سينا,124 Avenue Hassan II شارع الحسن الثاني,90000.0,35.7866173,-5.820818,normal,0,08:30,20:00
+142,node/8843359217,Pharmacie Brooks صيدلية بروكس,28 Rue de Grenade زنقة غرناطة,90000.0,35.7839198,-5.8214788,garde_24h,1,00:00,23:59
+143,node/8846093197,Pharmacie Tingis صيدلية طنجيس,Rue Imam Mouslim زنقة الإمام مسلم,90000.0,35.7855828,-5.8255958,garde_nuit,1,20:00,08:30
+144,node/8846104977,Pharmacie Dina صيدلية دينا,Rue Imam Mouslim زنقة الإمام مسلم,90000.0,35.7860886,-5.833369,normal,0,08:30,20:00
+145,node/8846498250,Pharmacie Masjid Marchan صيدلية مسجد مرشان,81 Avenue des U.S.A,90000.0,35.7899845,-5.8267794,normal,0,08:30,20:00
+146,node/8851370927,Pharmacie Banafsaj صيدلية البنفسج,Rue Banafsaj,90000.0,35.7875254,-5.8352893,normal,0,08:30,20:00
+147,node/8851405395,Pharmacie Al Boughaz صيدلية البوغاز,78 Rue du Mexique,90000.0,35.7799508,-5.81575,normal,0,08:30,20:00
+148,node/8852944506,Pharmacie Bismillah صيدلية بسم الله,12 Avenue Idriss Premier,90000.0,35.7717161,-5.7993335,normal,0,08:30,20:00
+149,node/8853004512,Pharmacie California صيدلية كليفورنيا,Rue Banafsaj,90000.0,35.7816672,-5.8423394,normal,0,08:30,20:00
+150,node/8853283505,Pharmacie El Houda صيدلية الهدى,Rue Hassan Dakhil,90000.0,35.7711507,-5.8232056,normal,0,08:30,20:00
+151,node/8853593540,Pharmacie Tarik Ben Ziad صيدلية طارق بن زياد,51 Boulevard Mohamed V شارع محمد الخامس,90013.0,35.7772935,-5.8049326,garde_nuit,1,20:00,08:30
+152,node/8853624201,Pharmacie Imam Nafie صيدلية الإمام نافع,Rue 12 زنقة,90000.0,35.7489299,-5.8055346,normal,0,08:30,20:00
+153,node/8857053792,Pharmacie les Palmiers صيدلية النخيل,7 Rue Antaki,90000.0,35.780345,-5.8055711,normal,0,08:30,20:00
+154,node/8857451363,Pharmacie Lalla Chafia صيدلية لالة شافية,Rue Goutbourg,90010.0,35.7714855,-5.8172455,normal,0,08:30,20:00
+155,node/8857467009,Pharmacie Mabrouki صيدلية مبروكي,Avenue Moulay Ali Cherif,90000.0,35.7538772,-5.813321,normal,0,08:30,20:00
+156,node/12670396463,صيدلية أريماس,Tanja Balia,,35.7643529,-5.7599345,normal,0,08:30,20:00
+157,node/12728400894,صيدلية بوتور,Tanja Balia,,35.7636627,-5.7697656,normal,0,08:30,20:00
+158,node/13424662712,صيدلية أنفاس,"hôtel ibis, Route malabata. El Afif Tower",,35.7730348,-5.7813702,normal,0,08:30,20:00

@@ -1,0 +1,129 @@
+{
+  "home": {
+    "title": "فارمافايند",
+    "subtitle": "ابحث عن دوائك. ابحث الآن.",
+    "searchPlaceholder": "ابحث عن دواء (مثال: دوليبران، باراسيتامول…)",
+    "searchButton": "بحث",
+    "locationPrompt": "استخدام موقعي",
+    "citySelector": "اختر مدينة",
+    "onDutyButton": "صيدليات الحراسة الآن",
+    "onDutyBadge": "حراسة"
+  },
+  "search": {
+    "resultsTitle": "نتائج \"{query}\"",
+    "noResults": "لم يتم العثور على صيدلية بـ\"{query}\" بالقرب منك.",
+    "noResultsHint": "حاول توسيع نطاق البحث أو التحقق من الإملاء.",
+    "radius": "النطاق",
+    "sortBy": "ترتيب حسب",
+    "sortDistance": "المسافة",
+    "sortFreshness": "الحداثة",
+    "filterStatus": "الحالة",
+    "mapToggle": "الخريطة",
+    "listToggle": "القائمة",
+    "distance": "{km} كم",
+    "open": "مفتوح",
+    "closed": "مغلق",
+    "onDuty": "حراسة"
+  },
+  "stock": {
+    "AVAILABLE": "متوفر",
+    "LOW_STOCK": "مخزون منخفض",
+    "OUT_OF_STOCK": "غير متوفر",
+    "ARRIVING_SOON": "قيد الطلب"
+  },
+  "freshness": {
+    "verified": "مؤكد",
+    "recent": "حديث",
+    "possibly_outdated": "قد يكون قديماً",
+    "unverified": "غير مؤكد",
+    "updatedAt": "تحديث {time}"
+  },
+  "pharmacy": {
+    "stockTitle": "الأدوية المتوفرة",
+    "hoursTitle": "أوقات العمل",
+    "directions": "الاتجاهات",
+    "whatsapp": "واتساب",
+    "closed": "مغلق",
+    "open24h": "مفتوح 24 ساعة",
+    "prescription": "يستلزم وصفة",
+    "controlled": "مادة خاضعة للرقابة"
+  },
+  "feedback": {
+    "question": "هل كانت هذه المعلومات دقيقة؟",
+    "yes": "نعم، دقيق",
+    "no": "لا، غير دقيق",
+    "comment": "تعليق (اختياري)",
+    "submit": "إرسال",
+    "thanks": "شكراً على ملاحظتك!"
+  },
+  "alert": {
+    "title": "إشعار بالتوفر",
+    "description": "احصل على إشعار عند توفر \"{medication}\" في {city}.",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "contactPlaceholder": "بريدك الإلكتروني أو هاتفك",
+    "submit": "إشعاري",
+    "success": "تم إنشاء التنبيه! سيتم إشعارك عند التوفر.",
+    "expires": "تنتهي خلال 7 أيام"
+  },
+  "onDuty": {
+    "title": "صيدليات الحراسة",
+    "subtitle": "صيدليات مفتوحة الآن",
+    "noResults": "لا توجد صيدليات حراسة في هذه المنطقة.",
+    "callNow": "اتصل الآن"
+  },
+  "auth": {
+    "loginTitle": "تسجيل دخول الصيدلاني",
+    "registerTitle": "تسجيل الصيدلاني",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "fullName": "الاسم الكامل",
+    "phone": "الهاتف (+212XXXXXXXXX)",
+    "licenseNumber": "رقم CNOP",
+    "loginButton": "تسجيل الدخول",
+    "registerButton": "إنشاء حساب",
+    "noAccount": "ليس لديك حساب؟",
+    "hasAccount": "لديك حساب بالفعل؟",
+    "register": "التسجيل",
+    "login": "تسجيل الدخول",
+    "logout": "تسجيل الخروج"
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "stock": "مخزوني",
+    "profile": "ملفي",
+    "analytics": "الإحصاءات",
+    "totalMedications": "الأدوية المدرجة",
+    "weeklySearches": "عمليات البحث هذا الأسبوع",
+    "confirmAll": "تأكيد الكل",
+    "confirmAllHint": "يُحدِّث جميع المخزونات كمؤكدة الآن",
+    "addMedication": "إضافة دواء",
+    "bulkUpdate": "تحديث مجمّع",
+    "saveChanges": "حفظ التغييرات",
+    "lastUpdate": "آخر تحديث"
+  },
+  "errors": {
+    "loadFailed": "تعذر التحميل. يرجى المحاولة مجدداً.",
+    "notFound": "الصفحة غير موجودة",
+    "serverError": "خطأ في الخادم. يرجى المحاولة مجدداً.",
+    "retry": "إعادة المحاولة",
+    "offline": "أنت غير متصل بالإنترنت."
+  },
+  "common": {
+    "loading": "جارٍ التحميل…",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "close": "إغلاق",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "next": "التالي",
+    "previous": "السابق",
+    "search": "بحث",
+    "all": "الكل",
+    "none": "لا شيء",
+    "yes": "نعم",
+    "no": "لا"
+  }
+}
