@@ -7,6 +7,7 @@ import searchRoutes from './search.routes';
 import onDutyRoutes from './onDuty.routes';
 import reportRoutes from './report.routes';
 import alertRoutes from './alert.routes';
+import aiRoutes from './ai.routes';
 
 export const router = Router();
 
@@ -18,3 +19,4 @@ router.use('/search', searchRoutes);
 router.use('/on-duty', onDutyRoutes);
 router.use('/reports', reportRoutes);
 router.use('/alerts', alertRoutes);
+router.use('/ai', aiRoutes);
