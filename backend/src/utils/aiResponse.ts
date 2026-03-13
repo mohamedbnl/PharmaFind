@@ -20,22 +20,11 @@ export function buildSummary(params: {
   const lang = normalizeLanguage(params.language);
   const { total, found, unavailable, scenarioType } = params;
 
-  if (lang === 'ar' || lang === 'darija') {
+  if (lang === 'ar') {
     const base = `لقينا ${found} من أصل ${total} أدوية.`;
-    if (unavailable > 0) {
-      return `${base} كاين ${unavailable} ما لقيناهش.`;
-    }
-    if (scenarioType === 'single_pharmacy') {
-      return `${base} أحسن حل تمشي لصيدلية وحدة.`;
-    }
+    if (unavailable > 0) return `${base} كاين ${unavailable} ما لقيناهش.`;
+    if (scenarioType === 'single_pharmacy') return `${base} أحسن حل تمشي لصيدلية وحدة.`;
     return `${base} غادي تحتاج تزور أكثر من صيدلية.`;
-  }
-
-  if (lang === 'en') {
-    const base = `We found ${found} of ${total} medications.`;
-    if (unavailable > 0) return `${base} ${unavailable} are unavailable nearby.`;
-    if (scenarioType === 'single_pharmacy') return `${base} Best option: one pharmacy.`;
-    return `${base} You may need multiple pharmacies.`;
   }
 
   const base = `Nous avons trouvé ${found} médicaments sur ${total}.`;
@@ -48,16 +37,10 @@ export function buildRequestDraft(params: { language?: string | null; items: str
   const lang = normalizeLanguage(params.language);
   const list = params.items.join(', ');
 
-  if (lang === 'ar' || lang === 'darija') {
+  if (lang === 'ar') {
     return {
       language: lang,
       message: `سلام، بغيت هاد الأدوية وما لقيناهش: ${list}. واش ممكن تعاونوني؟`,
-    };
-  }
-  if (lang === 'en') {
-    return {
-      language: lang,
-      message: `Hello, I am looking for these medicines but couldn't find them nearby: ${list}. Can you help?`,
     };
   }
   return {

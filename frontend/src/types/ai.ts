@@ -1,6 +1,6 @@
 import type { SearchResult } from '@/hooks/useSearch';
 
-export type AiLanguage = 'fr' | 'ar' | 'en' | 'darija';
+export type AiLanguage = 'fr' | 'ar';
 
 export interface AiRequestPayload {
   text?: string;

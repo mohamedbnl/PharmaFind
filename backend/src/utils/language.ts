@@ -1,14 +1,12 @@
-export type SupportedLanguage = 'fr' | 'ar' | 'en' | 'darija';
+export type SupportedLanguage = 'fr' | 'ar';
 
 export function normalizeLanguage(value?: string | null): SupportedLanguage {
   const v = (value ?? '').toLowerCase();
   if (v.startsWith('ar')) return 'ar';
-  if (v.startsWith('fr')) return 'fr';
-  if (v.startsWith('en')) return 'en';
-  if (v.includes('darija') || v.includes('ma')) return 'darija';
+  // Any non-Arabic input falls back to French by default
   return 'fr';
 }
 
 export function isRtl(lang: string) {
-  return lang === 'ar' || lang === 'darija';
+  return lang === 'ar';
 }

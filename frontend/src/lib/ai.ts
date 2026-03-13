@@ -18,12 +18,19 @@ export async function analyzeMedications(payload: AiRequestPayload) {
     return data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      const apiMessage =
+      const apiMessage: string =
         error.response?.data?.error?.message ||
         error.response?.data?.message ||
         error.message;
-      throw new Error(apiMessage);
+      const lower = apiMessage.toLowerCase();
+      if (lower.includes('missing') && lower.includes('api key')) {
+        throw new Error('Gemini API key is missing');
+      }
+      if (lower.includes('invalid') && lower.includes('api key')) {
+        throw new Error('Gemini API key is invalid or expired');
+      }
+      throw new Error(apiMessage || 'AI analysis failed, please try again');
     }
-    throw error as Error;
+    throw new Error('AI analysis failed, please try again');
   }
 }

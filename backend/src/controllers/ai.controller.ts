@@ -10,7 +10,7 @@ const LocationSchema = z.object({
 
 const AiRequestSchema = z.object({
   text: z.string().optional(),
-  language: z.string().optional(),
+  language: z.enum(['fr', 'ar']).optional(),
   userLocation: LocationSchema.optional(),
 });
 

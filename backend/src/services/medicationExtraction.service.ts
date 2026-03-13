@@ -21,16 +21,16 @@ export type ExtractionResult = z.infer<typeof ExtractionSchema>;
 
 function buildPrompt() {
   return [
-    'You are a medical extraction assistant.',
-    'Extract medications and dosages from the input and return JSON only.',
-    'Return shape:',
-    '{ "detectedLanguage": "fr|ar|en|darija", "medications": [',
+    'You are a medical extraction assistant for Morocco.',
+    'Detect if the input is French or Arabic (default to French when unsure).',
+    'Extract medications and dosages. Reply with JSON only in this shape:',
+    '{ "detectedLanguage": "fr|ar", "medications": [',
     '  { "rawText": "", "cleanedName": "", "dosage": "", "name_fr": "", "name_ar": "" }',
     '] }',
     'Rules:',
     '- Keep cleanedName concise (drug name + dosage if present).',
     '- If a field is unknown, set it to null.',
-    '- Do not include extra keys or commentary.',
+    '- Do not include extra keys, prose, or comments.',
   ].join('\n');
 }
 
@@ -48,9 +48,7 @@ export async function extractFromText(text: string): Promise<ExtractionResult> {
     const parsed = extractJson(raw);
     return ExtractionSchema.parse(parsed);
   } catch (error) {
-    if (error instanceof AppError) throw error;
-    const message = error instanceof Error ? error.message : String(error);
-    throw new AppError('AI_EXTRACTION_FAILED', 502, `Gemini extraction failed: ${message}`, [message]);
+    throw wrapGeminiError(error);
   }
 }
 
@@ -77,8 +75,19 @@ export async function extractFromImage(params: {
     const parsed = extractJson(raw);
     return ExtractionSchema.parse(parsed);
   } catch (error) {
-    if (error instanceof AppError) throw error;
-    const message = error instanceof Error ? error.message : String(error);
-    throw new AppError('AI_EXTRACTION_FAILED', 502, `Gemini extraction failed: ${message}`, [message]);
+    throw wrapGeminiError(error);
   }
+}
+
+function wrapGeminiError(error: unknown) {
+  if (error instanceof AppError) return error;
+  const message = error instanceof Error ? error.message : String(error);
+  const lower = message.toLowerCase();
+  if (lower.includes('api key') || lower.includes('invalid api key')) {
+    return new AppError('INVALID_GEMINI_KEY', 401, 'Gemini API key is invalid or expired', [message]);
+  }
+  if (lower.includes('not found') || lower.includes('model')) {
+    return new AppError('INVALID_GEMINI_MODEL', 400, 'Gemini model is invalid', [message]);
+  }
+  return new AppError('AI_EXTRACTION_FAILED', 502, `Gemini extraction failed: ${message}`, [message]);
 }

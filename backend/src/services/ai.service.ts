@@ -3,13 +3,13 @@ import { extractFromImage, extractFromText } from './medicationExtraction.servic
 import { searchMedications } from './search.service';
 import { computeScenario } from './scenario.service';
 import { buildRequestDraft, buildSummary, pickPharmacyName } from '../utils/aiResponse';
-import { normalizeLanguage } from '../utils/language';
+import { normalizeLanguage, SupportedLanguage } from '../utils/language';
 
 export interface AiAnalyzeInput {
   text?: string;
   image?: { buffer: Buffer; mimeType: string };
   userLocation?: { latitude: number; longitude: number };
-  language?: string;
+  language?: SupportedLanguage;
 }
 
 const ALLOWED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);

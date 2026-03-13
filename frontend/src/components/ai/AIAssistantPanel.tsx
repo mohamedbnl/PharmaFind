@@ -82,26 +82,6 @@ const labelsByLocale: Record<string, {
     scenarioPharmacies: 'عدد الصيدليات',
     draftNote: 'يمكنك تعديل هذا النص قبل مشاركته.',
   },
-  en: {
-    title: 'AI Assistant',
-    description: 'Enter text or upload a prescription to extract medications.',
-    textLabel: 'Request',
-    textPlaceholder: 'Example: I need Doliprane 1000 and Augmentin 1g',
-    uploadLabel: 'Prescription image',
-    submit: 'Analyze',
-    loading: 'Analyzing...',
-    empty: 'No AI results yet.',
-    extracted: 'Extracted medications',
-    draftLabel: 'Unavailable request draft',
-    missingInput: 'Please provide text or an image.',
-    failed: 'Analysis failed.',
-    summaryTitle: 'Summary',
-    scenarioTitle: 'Recommended scenario',
-    scenarioType: 'Type',
-    scenarioDistance: 'Total distance',
-    scenarioPharmacies: 'Pharmacies',
-    draftNote: 'You can edit this message before sharing.',
-  },
   fr: {
     title: 'Assistant IA',
     description: 'Entrez un texte ou une photo d’ordonnance pour extraire les médicaments.',
@@ -146,7 +126,7 @@ export function AIAssistantPanel({ userLocation }: Props) {
         text,
         image: file,
         userLocation,
-        language: locale as 'fr' | 'ar' | 'en' | 'darija',
+        language: (locale === 'ar' ? 'ar' : 'fr'),
       });
       setResponse(data);
       setDraft(data.generatedRequestDraft?.message ?? '');
