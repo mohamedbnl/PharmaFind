@@ -32,10 +32,11 @@ type Locale = (typeof locales)[number];
 
 interface Props {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: string } | Promise<{ locale: string }>;
 }
 
-export default async function LocaleLayout({ children, params: { locale } }: Props) {
+export default async function LocaleLayout({ children, params }: Props) {
+  const { locale } = await Promise.resolve(params);
   if (!locales.includes(locale as Locale)) notFound();
 
   const messages = await getMessages();

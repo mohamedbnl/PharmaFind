@@ -3,11 +3,19 @@ import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import { OnboardingWizard } from '@/components/dashboard/OnboardingWizard';
+import { useMyPharmacy } from '@/hooks/usePharmacies';
+import { useEffect } from 'react';
 
 export default function DashboardPage() {
   const locale = useLocale();
   const isAr = locale === 'ar';
   const { user } = useAuth();
+  const { data: myPharmacy, isLoading: pharmacyLoading } = useMyPharmacy();
+
+  useEffect(() => {
+    if (!myPharmacy?.id) return;
+    localStorage.setItem('pharmacyId', myPharmacy.id);
+  }, [myPharmacy]);
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -37,12 +45,14 @@ export default function DashboardPage() {
       </div>
 
       {/* Onboarding wizard if no pharmacy yet */}
-      <div className="mb-4">
-        <h2 className="font-semibold text-gray-800 mb-4">
-          {isAr ? 'تسجيل صيدليتك' : 'Enregistrer votre pharmacie'}
-        </h2>
-        <OnboardingWizard />
-      </div>
+      {!pharmacyLoading && !myPharmacy && (
+        <div className="mb-4">
+          <h2 className="font-semibold text-gray-800 mb-4">
+            {isAr ? 'تسجيل صيدليتك' : 'Enregistrer votre pharmacie'}
+          </h2>
+          <OnboardingWizard />
+        </div>
+      )}
     </div>
   );
 }

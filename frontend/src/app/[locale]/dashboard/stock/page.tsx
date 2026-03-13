@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { usePharmacyStock, useAddStock } from '@/hooks/useStock';
+import { usePharmacyId } from '@/hooks/usePharmacyId';
 import { useMedicationAutocomplete } from '@/hooks/useMedications';
 import { StockTable } from '@/components/dashboard/StockTable';
 
@@ -68,8 +69,7 @@ export default function StockPage() {
   const locale = useLocale();
   const isAr = locale === 'ar';
 
-  // pharmacyId stored in localStorage after onboarding wizard creates the pharmacy
-  const pharmacyId = typeof window !== 'undefined' ? (localStorage.getItem('pharmacyId') ?? '') : '';
+  const pharmacyId = usePharmacyId();
 
   const { data: stock = [], isLoading, error } = usePharmacyStock(pharmacyId || undefined);
 

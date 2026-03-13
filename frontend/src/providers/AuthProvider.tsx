@@ -79,6 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = useCallback(async () => {
     try { await api.post('/auth/logout'); } catch { /* ignore */ }
     clearTokens();
+    if (typeof window !== 'undefined') localStorage.removeItem('pharmacyId');
     setUser(null);
   }, []);
 

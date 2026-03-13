@@ -27,6 +27,12 @@ export const update: RequestHandler = asyncHandler(async (req, res) => {
   res.json({ success: true, data: pharmacy });
 });
 
+export const getMine: RequestHandler = asyncHandler(async (req, res) => {
+  if (!req.userId) throw new AppError('UNAUTHORIZED', 401, 'Not authenticated');
+  const pharmacy = await pharmacyService.getMyPharmacy(req.userId);
+  res.json({ success: true, data: pharmacy });
+});
+
 export const create: RequestHandler = asyncHandler(async (req, res) => {
   if (!req.userId) throw new AppError('UNAUTHORIZED', 401, 'Not authenticated');
   const { nameFr, nameAr, addressFr, city, region, latitude, longitude, phone, whatsapp, operatingHours, is24h, licenseNumber } = req.body;

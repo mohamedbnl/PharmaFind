@@ -1,5 +1,5 @@
 'use client';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { usePharmacy } from '@/hooks/usePharmacies';
@@ -156,10 +156,37 @@ function PharmacyDetailContent({ id }: { id: string }) {
   );
 }
 
-export default function PharmacyDetailPage({ params }: { params: { id: string } }) {
+type ParamsInput = { id: string } | Promise<{ id: string }>;
+
+export default function PharmacyDetailPage({ params }: { params: ParamsInput }) {
+  const [pharmacyId, setPharmacyId] = useState<string | null>(() =>
+    typeof params === 'object' && 'id' in params ? (params as { id: string }).id : null,
+  );
+
+  useEffect(() => {
+    let mounted = true;
+    Promise.resolve(params).then((value: { id: string }) => {
+      if (mounted && value?.id) setPharmacyId(value.id);
+    });
+    return () => { mounted = false; };
+  }, [params]);
+
+  if (!pharmacyId) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="h-8 bg-gray-200 rounded w-1/2 animate-pulse mb-4" />
+        <div className="card space-y-3 animate-pulse">
+          <div className="h-4 bg-gray-200 rounded w-3/4" />
+          <div className="h-4 bg-gray-200 rounded w-2/3" />
+          <div className="h-4 bg-gray-200 rounded w-1/2" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <Suspense>
-      <PharmacyDetailContent id={params.id} />
+      <PharmacyDetailContent id={pharmacyId} />
     </Suspense>
   );
 }

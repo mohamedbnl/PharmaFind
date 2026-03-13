@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useLocale } from 'next-intl';
 import { usePharmacy } from '@/hooks/usePharmacies';
+import { usePharmacyId } from '@/hooks/usePharmacyId';
 import { api } from '@/lib/api';
 
 const DAYS = [
@@ -17,7 +18,7 @@ const DAYS = [
 export default function ProfilePage() {
   const locale = useLocale();
   const isAr = locale === 'ar';
-  const pharmacyId = typeof window !== 'undefined' ? (localStorage.getItem('pharmacyId') ?? '') : '';
+  const pharmacyId = usePharmacyId();
   const { data: pharmacy, isLoading } = usePharmacy(pharmacyId);
 
   const [form, setForm] = useState({ nameFr: '', nameAr: '', addressFr: '', city: '', phone: '', whatsapp: '', email: '', is24h: false });

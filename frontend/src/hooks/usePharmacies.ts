@@ -48,3 +48,14 @@ export function usePharmacy(id: string) {
     staleTime: 5 * 60 * 1000,
   });
 }
+
+export function useMyPharmacy() {
+  return useQuery<PharmacyDetail | null>({
+    queryKey: ['pharmacy', 'me'],
+    queryFn: async () => {
+      const { data } = await api.get('/pharmacies/me');
+      return data.data;
+    },
+    staleTime: 2 * 60 * 1000,
+  });
+}

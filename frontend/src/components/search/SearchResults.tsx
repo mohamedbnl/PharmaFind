@@ -8,9 +8,11 @@ interface Props {
   isLoading: boolean;
   error: Error | null;
   query: string;
+  userLocation?: { latitude: number; longitude: number };
+  highlightedId?: string;
 }
 
-export function SearchResults({ results, isLoading, error, query }: Props) {
+export function SearchResults({ results, isLoading, error, query, userLocation, highlightedId }: Props) {
   const locale = useLocale();
   const isAr = locale === 'ar';
 
@@ -76,7 +78,12 @@ export function SearchResults({ results, isLoading, error, query }: Props) {
         {query && ` ${isAr ? 'لـ' : 'pour'} "${query}"`}
       </p>
       {results.map((result) => (
-        <PharmacyCard key={result.stock.id} result={result} />
+        <PharmacyCard
+          key={result.stock.id}
+          result={result}
+          userLocation={userLocation}
+          highlighted={highlightedId === result.pharmacy.id}
+        />
       ))}
     </div>
   );

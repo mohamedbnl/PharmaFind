@@ -108,6 +108,15 @@ export async function updatePharmacy(id: string, userId: string, input: Partial<
   return prisma.pharmacy.update({ where: { id }, data });
 }
 
+export async function getMyPharmacy(userId: string) {
+  const pharmacy = await prisma.pharmacy.findFirst({
+    where: { userId, deletedAt: null },
+    orderBy: { createdAt: 'desc' },
+  });
+  if (!pharmacy) return null;
+  return { ...pharmacy, operatingHours: parseHours(pharmacy.operatingHours) };
+}
+
 export async function listPharmacies(params: {
   city?: string;
   page?: number;

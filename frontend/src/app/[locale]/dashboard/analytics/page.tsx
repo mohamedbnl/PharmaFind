@@ -2,6 +2,7 @@
 import { useLocale } from 'next-intl';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@/lib/api';
+import { usePharmacyId } from '@/hooks/usePharmacyId';
 
 interface Analytics {
   totalSearches: number;
@@ -13,7 +14,7 @@ interface Analytics {
 export default function AnalyticsPage() {
   const locale = useLocale();
   const isAr = locale === 'ar';
-  const pharmacyId = typeof window !== 'undefined' ? (localStorage.getItem('pharmacyId') ?? '') : '';
+  const pharmacyId = usePharmacyId();
 
   const { data, isLoading, error } = useQuery<Analytics>({
     queryKey: ['analytics', pharmacyId],
