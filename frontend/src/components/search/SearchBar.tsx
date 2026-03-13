@@ -40,15 +40,34 @@ export function SearchBar({ initialQuery = '', className }: Props) {
     setOpen(false);
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!query.trim()) return;
 
+    let finalLat = lat;
+    let finalLng = lng;
+
+    // Auto-request location if not yet obtained
+    if (!finalLat || !finalLng) {
+      try {
+        const pos = await new Promise<GeolocationPosition>((resolve, reject) =>
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            enableHighAccuracy: true,
+            timeout: 5000,
+          }),
+        );
+        finalLat = pos.coords.latitude;
+        finalLng = pos.coords.longitude;
+      } catch {
+        // denied or unavailable — proceed without location
+      }
+    }
+
     const params = new URLSearchParams(searchParams.toString());
-    params.set('q', selectedMed?.id ?? query);
-    params.set('qLabel', query);
-    if (lat) params.set('lat', String(lat));
-    if (lng) params.set('lng', String(lng));
+    params.set('q', selectedMed?.nameFr ?? query);
+    params.set('qLabel', selectedMed?.nameFr ?? query);
+    if (finalLat) params.set('lat', String(finalLat));
+    if (finalLng) params.set('lng', String(finalLng));
 
     router.push(`/${locale}/search?${params.toString()}`);
   }
@@ -71,7 +90,7 @@ export function SearchBar({ initialQuery = '', className }: Props) {
           onChange={(e) => { setQuery(e.target.value); setSelectedMed(null); setOpen(true); }}
           onFocus={() => { if (query.length >= 2) setOpen(true); }}
           placeholder={t('searchPlaceholder')}
-          className="input-field input-with-icon-start pe-32 py-3 text-base"
+          className="input-field input-with-icon-start pe-36 py-3 text-base"
           aria-autocomplete="list"
           aria-expanded={open}
           autoComplete="off"
@@ -80,7 +99,7 @@ export function SearchBar({ initialQuery = '', className }: Props) {
         <button
           type="button"
           onClick={requestLocation}
-          className="absolute end-20 p-2 text-gray-400 hover:text-brand-600 transition"
+          className="absolute end-24 p-2 text-gray-400 hover:text-brand-600 transition"
           title={t('locationPrompt')}
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

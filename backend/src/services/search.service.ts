@@ -27,6 +27,23 @@ function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number): nu
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+function isOpenNow(operatingHours: unknown, is24h: boolean): boolean {
+  if (is24h) return true;
+  try {
+    const hours = typeof operatingHours === 'string' ? JSON.parse(operatingHours) : operatingHours as Record<string, { open: string; close: string; open2?: string; close2?: string } | null>;
+    const moroccoNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'Africa/Casablanca' }));
+    const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    const schedule = hours[days[moroccoNow.getDay()]];
+    if (!schedule) return false;
+    const t = `${String(moroccoNow.getHours()).padStart(2, '0')}:${String(moroccoNow.getMinutes()).padStart(2, '0')}`;
+    if (t >= schedule.open && t < schedule.close) return true;
+    if (schedule.open2 && schedule.close2 && t >= schedule.open2 && t < schedule.close2) return true;
+    return false;
+  } catch {
+    return false;
+  }
+}
+
 function freshnessScore(lastConfirmedAt: Date): number {
   const h = (Date.now() - new Date(lastConfirmedAt).getTime()) / 3600000;
   if (h < FRESHNESS.VERIFIED) return 1;
@@ -66,10 +83,15 @@ export async function searchMedications(params: SearchParams) {
   const medIds = medications.map((m) => m.id);
 
   // Step 2: fetch stock for matched medications
+  // Default: exclude OUT_OF_STOCK so only pharmacies that can provide the medication are shown
+  const statusFilter = status
+    ? { status }
+    : { status: { in: ['AVAILABLE', 'LOW_STOCK', 'ARRIVING_SOON'] } };
+
   const stocks = await prisma.pharmacyStock.findMany({
     where: {
       medicationId: { in: medIds },
-      ...(status ? { status } : {}),
+      ...statusFilter,
       pharmacy: { isActive: true, deletedAt: null },
     },
     include: {
@@ -101,8 +123,11 @@ export async function searchMedications(params: SearchParams) {
     results = results.filter((r) => r.distanceKm! <= radius);
   }
 
-  // Step 4: sort by distance then freshness
+  // Step 4: sort — open first, then by distance, then by freshness
   results.sort((a, b) => {
+    const aOpen = isOpenNow(a.pharmacy.operatingHours, a.pharmacy.is24h) ? 0 : 1;
+    const bOpen = isOpenNow(b.pharmacy.operatingHours, b.pharmacy.is24h) ? 0 : 1;
+    if (aOpen !== bOpen) return aOpen - bOpen;
     if (hasLocation) {
       const dd = a.distanceKm! - b.distanceKm!;
       if (Math.abs(dd) > 0.2) return dd;
@@ -147,6 +172,7 @@ export async function searchMedications(params: SearchParams) {
       requiresPrescription: r.medication.requiresPrescription,
     },
     distanceKm: r.distanceKm,
+    isOpen: isOpenNow(r.pharmacy.operatingHours, r.pharmacy.is24h),
     trgmScore: 1,
   }));
 }

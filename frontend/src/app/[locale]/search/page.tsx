@@ -1,5 +1,6 @@
 'use client';
-import { Suspense } from 'react';
+import { Suspense, Component, useMemo } from 'react';
+import type { ReactNode } from 'react';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { SearchBar } from '@/components/search/SearchBar';
@@ -19,6 +20,22 @@ const PharmacyMap = dynamic(
   },
 );
 
+// Error boundary so a Leaflet crash never takes down the results list
+class MapErrorBoundary extends Component<{ children: ReactNode }, { crashed: boolean }> {
+  state = { crashed: false };
+  static getDerivedStateFromError() { return { crashed: true }; }
+  render() {
+    if (this.state.crashed) {
+      return (
+        <div className="h-full flex items-center justify-center bg-gray-100 rounded-xl text-gray-400 text-sm">
+          Carte indisponible
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 function SearchPageContent() {
   const searchParams = useSearchParams();
 
@@ -30,6 +47,21 @@ function SearchPageContent() {
   const qLabel = searchParams.get('qLabel') ?? q;
 
   const { data: results = [], isLoading, error } = useSearch({ q, lat, lng, radius, status });
+
+  // Client-side sort: open first → closest distance → most recent confirmation
+  // Guards against edge cases where the backend sorted by freshness (no location in original query)
+  const sortedResults = useMemo(() => {
+    if (!results.length) return results;
+    return [...results].sort((a, b) => {
+      const openDiff = (a.isOpen ? 0 : 1) - (b.isOpen ? 0 : 1);
+      if (openDiff !== 0) return openDiff;
+      if (a.distanceKm != null && b.distanceKm != null) {
+        const dd = a.distanceKm - b.distanceKm;
+        if (Math.abs(dd) > 0.2) return dd;
+      }
+      return new Date(b.stock.lastConfirmedAt).getTime() - new Date(a.stock.lastConfirmedAt).getTime();
+    });
+  }, [results]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -45,17 +77,19 @@ function SearchPageContent() {
           {/* Results list */}
           <div className="w-full lg:w-1/2 overflow-y-auto">
             <SearchResults
-              results={results}
+              results={sortedResults}
               isLoading={isLoading}
-              error={error as Error | null}
+              error={sortedResults.length === 0 ? (error as Error | null) : null}
               query={q}
             />
           </div>
 
-          {/* Map panel */}
-          <div className="hidden lg:block lg:w-1/2 rounded-xl overflow-hidden">
-            {!isLoading && (
-              <PharmacyMap results={results} userLat={lat} userLng={lng} />
+          {/* Map panel — wrapped in error boundary so Leaflet crashes stay contained */}
+          <div className="hidden lg:block lg:w-1/2 h-full rounded-xl overflow-hidden">
+            {!isLoading && sortedResults.length > 0 && (
+              <MapErrorBoundary>
+                <PharmacyMap results={sortedResults} userLat={lat} userLng={lng} />
+              </MapErrorBoundary>
             )}
           </div>
         </div>

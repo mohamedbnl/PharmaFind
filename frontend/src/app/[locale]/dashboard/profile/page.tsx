@@ -37,7 +37,7 @@ export default function ProfilePage() {
     const h: Record<string, { open: string; close: string } | null> = {};
     for (const { key } of DAYS) {
       const s = pharmacy.operatingHours[key];
-      h[key] = s ? { open: s.open, close: s.close } : null;
+      h[key] = s ? { open: s.open, close: s.close, ...(s.open2 ? { open2: s.open2, close2: s.close2 } : {}) } : null;
     }
     setHours(h);
   }, [pharmacy]);

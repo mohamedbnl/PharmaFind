@@ -21,7 +21,7 @@ api.interceptors.response.use(
     const original = error.config;
     if (error.response?.status === 401 && !original._retry) {
       original._retry = true;
-      const refreshToken = localStorage.getItem('refresh_token');
+      const refreshToken = typeof window !== 'undefined' ? localStorage.getItem('refresh_token') : null;
       if (!refreshToken) {
         clearTokens();
         return Promise.reject(error);
@@ -47,5 +47,5 @@ export const getAccessToken = () => _accessToken;
 export const setAccessToken = (t: string) => { _accessToken = t; };
 export const clearTokens = () => {
   _accessToken = null;
-  localStorage.removeItem('refresh_token');
+  if (typeof window !== 'undefined') localStorage.removeItem('refresh_token');
 };

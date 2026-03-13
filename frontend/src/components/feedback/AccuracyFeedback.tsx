@@ -14,7 +14,7 @@ export function AccuracyFeedback({ pharmacyId, stockId, medicationId }: Props) {
   const isAr = locale === 'ar';
   const [choice, setChoice] = useState<'accuracy_confirm' | 'accuracy_deny' | null>(null);
   const [comment, setComment] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'done'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
 
   async function submit(reportType: 'accuracy_confirm' | 'accuracy_deny') {
     setChoice(reportType);
@@ -23,8 +23,16 @@ export function AccuracyFeedback({ pharmacyId, stockId, medicationId }: Props) {
       await api.post('/reports', { pharmacyId, stockId, medicationId, reportType, comment: comment || undefined });
       setStatus('done');
     } catch {
-      setStatus('idle');
+      setStatus('error');
     }
+  }
+
+  if (status === 'error') {
+    return (
+      <div className="card text-center py-4 text-sm text-red-500">
+        {isAr ? 'حدث خطأ، حاول مجدداً' : 'Une erreur est survenue, réessayez'}
+      </div>
+    );
   }
 
   if (status === 'done') {

@@ -306,7 +306,7 @@ Voir `.env.example` pour la liste complète.
 
 | Variable | Description |
 |----------|-------------|
-| `DATABASE_URL` | Connexion PostgreSQL |
+| `DATABASE_URL` | Connexion SQLite (`file:./prisma/pharmafind.db`) |
 | `JWT_SECRET` | Clé secrète JWT (64+ caractères en production) |
 | `FRONTEND_URL` | Domaine frontend exact (CORS) |
 | `NODE_ENV` | `development` ou `production` |

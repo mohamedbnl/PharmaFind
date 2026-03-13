@@ -53,13 +53,14 @@ export function OnboardingWizard() {
     setLoading(true);
     setError('');
     try {
-      await api.post('/pharmacies', {
+      const { data } = await api.post('/pharmacies', {
         ...profile,
         latitude: parseFloat(profile.latitude),
         longitude: parseFloat(profile.longitude),
         operatingHours: profile.is24h ? {} : hours,
         region: profile.city,
       });
+      localStorage.setItem('pharmacyId', data.data.id);
       router.push(`/${locale}/dashboard/stock`);
     } catch (err: unknown) {
       const msg = (err as { response?: { data?: { error?: { message?: string } } } })?.response?.data?.error?.message;

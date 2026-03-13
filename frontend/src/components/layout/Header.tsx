@@ -16,7 +16,7 @@ export function Header() {
     const next = isAr ? 'fr' : 'ar';
     // Replace locale prefix in path
     const newPath = pathname.replace(`/${locale}`, `/${next}`);
-    router.push(newPath);
+    router.push(newPath + window.location.search);
   }
 
   const nav = [

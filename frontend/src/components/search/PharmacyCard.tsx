@@ -3,13 +3,11 @@ import Link from 'next/link';
 import { useLocale } from 'next-intl';
 import { StockBadge } from './StockBadge';
 import { FreshnessBadge } from './FreshnessBadge';
-import { isPharmacyOpen } from '@/lib/freshness';
 import type { SearchResult } from '@/hooks/useSearch';
 
 export function PharmacyCard({ result }: { result: SearchResult }) {
   const locale = useLocale();
-  const { pharmacy, stock, medication, distanceKm } = result;
-  const open = isPharmacyOpen(pharmacy.operatingHours, pharmacy.is24h);
+  const { pharmacy, stock, medication, distanceKm, isOpen: open } = result;
   const name = locale === 'ar' && pharmacy.nameAr ? pharmacy.nameAr : pharmacy.nameFr;
   const isAr = locale === 'ar';
 

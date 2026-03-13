@@ -6,13 +6,9 @@
 |------|---------|-------|
 | Node.js | 20+ | `node -v` |
 | npm | 9+ | `npm -v` |
-| PostgreSQL | 15+ | `psql --version` |
 | Git | any | `git --version` |
 
-PostgreSQL must be running with these extensions available:
-```
-pg_trgm, uuid-ossp, unaccent, PostGIS
-```
+No external database required — PharmaFind uses **SQLite** via Prisma.
 
 ---
 
@@ -28,7 +24,7 @@ cd backend && npm install
 # Frontend
 cd ../frontend && npm install
 ```
-²
+
 ---
 
 ## Step 2 — Configure environment
@@ -41,7 +37,7 @@ cp .env.example backend/.env
 Edit `backend/.env` with your values:
 
 ```env
-DATABASE_URL=postgresql://YOUR_USER:YOUR_PASSWORD@localhost:5432/pharmafind
+DATABASE_URL=file:./prisma/pharmafind.db
 JWT_SECRET=<generate with: node -e "console.log(require('crypto').randomBytes(48).toString('hex'))">
 NODE_ENV=development
 PORT=3001
@@ -63,18 +59,7 @@ NEXT_PUBLIC_MAP_TILE_URL=https://tile.openstreetmap.org/{z}/{x}/{y}.png
 ```bash
 cd backend
 
-# Create the database (run once)
-psql -U postgres -c "CREATE DATABASE pharmafind;"
-
-# Enable required extensions (run once)
-psql -U postgres -d pharmafind -c "
-  CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";
-  CREATE EXTENSION IF NOT EXISTS pg_trgm;
-  CREATE EXTENSION IF NOT EXISTS unaccent;
-  CREATE EXTENSION IF NOT EXISTS postgis;
-"
-
-# Run migrations
+# Run migrations (creates the SQLite file automatically)
 npx prisma migrate deploy
 
 # Generate Prisma client
@@ -99,11 +84,10 @@ Seeding stock...         ✓ 19,140 inserted
 Seed complete.
 ```
 
-Verify in psql:
-```sql
-SELECT COUNT(*) FROM medications;      -- 2839
-SELECT COUNT(*) FROM pharmacies;       -- 158
-SELECT COUNT(*) FROM pharmacy_stock;   -- 19140
+Verify with Prisma Studio:
+```bash
+npx prisma studio
+# Open http://localhost:5555 and check table row counts
 ```
 
 ---
@@ -197,8 +181,7 @@ npm start           # serves built app
 
 | Problem | Fix |
 |---------|-----|
-| `ECONNREFUSED 5432` | PostgreSQL is not running — start it with `pg_ctl start` or your OS service manager |
-| `Extension "postgis" not found` | Install PostGIS: `sudo apt install postgresql-15-postgis-3` (Linux) or via Postgres.app (macOS) |
+| `DATABASE_URL` missing | Make sure `backend/.env` exists with `DATABASE_URL=file:./prisma/pharmafind.db` |
 | `JWT_SECRET missing` | Make sure `backend/.env` exists and contains `JWT_SECRET` |
 | `CORS error in browser` | Check that `FRONTEND_URL=http://localhost:3000` in `backend/.env` (no trailing slash) |
 | Prisma client out of date | Run `cd backend && npx prisma generate` |

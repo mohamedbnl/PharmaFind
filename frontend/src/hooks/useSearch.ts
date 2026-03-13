@@ -35,6 +35,7 @@ export interface SearchResult {
     requiresPrescription: boolean;
   };
   distanceKm: number | null;
+  isOpen: boolean;
   trgmScore: number;
 }
 

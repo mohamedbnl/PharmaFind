@@ -2,7 +2,7 @@
 
 ## Pre-Launch Infrastructure
 
-- [ ] PostgreSQL 15+ deployed with extensions enabled (pg_trgm, PostGIS, uuid-ossp, unaccent)
+- [ ] SQLite database file initialized (`DATABASE_URL=file:./prisma/pharmafind.db` in backend/.env)
 - [ ] Run migrations: `cd backend && npx prisma migrate deploy`
 - [ ] Run seed: `cd backend && npx ts-node prisma/seed.ts`
   - Verify: 2,839 medications, 158 Tanger pharmacies, 19,140 stock records
@@ -14,7 +14,7 @@
 
 ```bash
 # backend/.env
-DATABASE_URL=postgresql://...
+DATABASE_URL=file:./prisma/pharmafind.db
 JWT_SECRET=<64+ char random string>
 NODE_ENV=production
 FRONTEND_URL=https://pharmafind.ma

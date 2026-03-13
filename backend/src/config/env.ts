@@ -10,7 +10,6 @@ const envSchema = z.object({
   FRONTEND_URL: z.string().default('http://localhost:3000'),
   SEARCH_DEFAULT_RADIUS_KM: z.coerce.number().default(5),
   SEARCH_MAX_RADIUS_KM: z.coerce.number().default(50),
-  TRGM_SIMILARITY_THRESHOLD: z.coerce.number().default(0.2),
 });
 
 export const env = envSchema.parse(process.env);

@@ -62,7 +62,11 @@
       "Bash(curl -s http://localhost:3001/health 2>&1)",
       "Bash(curl -s \"http://localhost:3001/api/v1/search?q=para\" 2>&1 | head -c 500)",
       "Bash(curl -s \"http://localhost:3001/api/v1/medications/autocomplete?q=para\" 2>&1 | head -c 500)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000 2>&1)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000 2>&1)",
+      "Bash(ls -la /d/ramdanAI/*.md)",
+      "Bash(ls -la /d/ramdanAI/frontend/*.config.* 2>/dev/null)",
+      "Bash(ls -lh /d/ramdanAI/backend/prisma/*.db 2>/dev/null || echo \"No SQLite DB files found\")",
+      "Bash(cd D:/ramdanAI/frontend && npx next build 2>&1)"
     ]
   }
 }
