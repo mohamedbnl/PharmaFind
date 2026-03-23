@@ -1,3 +1,4 @@
+
 export interface MedicationExtraction {
   rawText: string;
   cleanedName: string;
@@ -13,19 +14,17 @@ export interface SearchedMedication extends MedicationExtraction {
     nameFr: string;
     nameAr: string | null;
     addressFr: string;
-    distance_km: number | null;
-    latitude: number;
-    longitude: number;
-    stockStatus: string;
   }>;
 }
 
 export interface Scenario {
   type: 'single_pharmacy' | 'multiple_pharmacies' | 'not_found';
+
   pharmacyIds: string[];
   message: string;
   totalDistanceKm: number | null;
 }
+
 
 export interface AIResponse {
   success: boolean;
@@ -43,4 +42,5 @@ export interface AIResponse {
     language: string;
     message: string;
   } | null;
+
 }

@@ -10,31 +10,30 @@ import { AIAssistantPanel } from '@/components/ai/AIAssistantPanel';
 import { AISummaryCard } from '@/components/ai/AISummaryCard';
 import { ScenarioCard } from '@/components/ai/ScenarioCard';
 import { UnavailableDraftEditor } from '@/components/ai/UnavailableDraftEditor';
-import { AIResponse, SearchedMedication } from '@/types/ai';
-import { Bot, Search } from 'lucide-react';
+import { AIResponse } from '@/types/ai';
+import { Bot, Map as MapIcon, Menu } from 'lucide-react';
 
-// Leaflet must be loaded client-side only
 const PharmacyMap = dynamic(
   () => import('@/components/map/PharmacyMap').then((m) => m.PharmacyMap),
   {
     ssr: false,
     loading: () => (
-      <div className="h-full flex items-center justify-center bg-gray-100 rounded-xl text-gray-400 text-sm">
-        Chargement de la carte…
+      <div className="h-full flex flex-col items-center justify-center bg-gray-50/50 text-gray-400">
+        <MapIcon className="w-12 h-12 mb-3 text-gray-300" />
+        <p className="text-sm font-medium">Chargement de la carte interactive…</p>
       </div>
     ),
   },
 );
 
-// Error boundary so a Leaflet crash never takes down the results list
 class MapErrorBoundary extends Component<{ children: ReactNode }, { crashed: boolean }> {
   state = { crashed: false };
   static getDerivedStateFromError() { return { crashed: true }; }
   render() {
     if (this.state.crashed) {
       return (
-        <div className="h-full flex items-center justify-center bg-gray-100 rounded-xl text-gray-400 text-sm">
-          Carte indisponible
+        <div className="h-full flex items-center justify-center bg-gray-50 text-gray-400 text-sm border-s border-gray-200">
+          La carte n'est pas disponible pour l'instant
         </div>
       );
     }
@@ -57,8 +56,6 @@ function SearchPageContent() {
 
   const { data: results = [], isLoading, error } = useSearch({ q, lat, lng, radius, status });
 
-  // Client-side sort: open first → closest distance → most recent confirmation
-  // Guards against edge cases where the backend sorted by freshness (no location in original query)
   const sortedResults = useMemo(() => {
     if (!results.length) return results;
     return [...results].sort((a, b) => {
@@ -72,7 +69,6 @@ function SearchPageContent() {
     });
   }, [results]);
 
-  // Transform AI results into the format expected by SearchResults and Map
   const mapResults = useMemo(() => {
     if (searchMode === 'standard') return sortedResults;
     if (!aiResponse) return [];
@@ -96,45 +92,44 @@ function SearchPageContent() {
   }, [searchMode, sortedResults, aiResponse]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Search Mode Toggle */}
-      <div className="bg-white border-b shadow-sm relative z-10">
-        <div className="max-w-6xl mx-auto px-4 flex">
-          <button
-            onClick={() => setSearchMode('standard')}
-            className={`px-4 py-3 flex items-center gap-2 font-medium text-sm border-b-2 transition-colors ${
-              searchMode === 'standard' ? 'border-primary-600 text-primary-600' : 'border-transparent text-gray-500 hover:text-gray-700'
-            }`}
-          >
-            <Search className="w-4 h-4" />
-            Recherche Standard
-          </button>
-          <button
-            onClick={() => setSearchMode('ai')}
-            className={`px-4 py-3 flex items-center gap-2 font-medium text-sm border-b-2 transition-colors ${
-              searchMode === 'ai' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'
-            }`}
-          >
-            <Bot className="w-4 h-4" />
-            Assistant IA
-          </button>
-        </div>
-      </div>
+    <div className="bg-white flex flex-col h-[calc(100vh-80px)] overflow-hidden">
+      
+      {/* Universal 40/60 Split Pane layout */}
+      <div className="flex-1 flex flex-col lg:flex-row shadow-sm min-h-0">
+        
+        {/* Left pane: Search Form + Results List */}
+        <div className="w-full lg:w-[40%] flex flex-col bg-slate-50 relative flex-shrink-0 border-e border-gray-200 z-10 min-h-0">
+          
+          {searchMode === 'standard' && (
+            <div className="sticky top-0 z-20 bg-white/90 backdrop-blur-xl border-b border-gray-100 p-5 shadow-sm">
+              <SearchBar initialQuery={qLabel} onAIToggle={() => setSearchMode('ai')} />
+            </div>
+          )}
 
-      {searchMode === 'standard' && (
-        <div className="bg-white border-b shadow-sm px-4 py-3 sticky top-0 z-10">
-          <div className="max-w-6xl mx-auto">
-            <SearchBar initialQuery={qLabel} />
-          </div>
-        </div>
-      )}
+          {searchMode === 'ai' && (
+            <div className="sticky top-0 z-20 bg-gradient-to-r from-indigo-50 to-purple-50 border-b border-indigo-100 p-5 shadow-sm flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-indigo-100 rounded-full flex justify-center items-center shrink-0 ring-2 ring-indigo-50/50">
+                  <Bot className="w-5 h-5 text-indigo-700" />
+                </div>
+                <div>
+                  <h2 className="font-bold text-gray-900 leading-tight">Assistant IA</h2>
+                  <p className="text-xs text-gray-500">Musa'id IA interactif</p>
+                </div>
+              </div>
+              <button 
+                onClick={() => setSearchMode('standard')} 
+                className="px-4 py-2 bg-white hover:bg-gray-50 text-indigo-600 text-sm font-bold rounded-lg border border-indigo-100 shadow-sm transition-colors"
+              >
+                Retour
+              </button>
+            </div>
+          )}
 
-      <div className="max-w-6xl mx-auto px-4 py-4">
-        <div className="flex flex-col lg:flex-row gap-4" style={{ height: 'calc(100vh - 128px)' }}>
-          {/* Results list */}
-          <div className="w-full lg:w-1/2 overflow-y-auto space-y-4 pr-2 pb-20">
+          {/* Scrollable List Container under Search Header */}
+          <div className="flex-1 overflow-y-auto px-4 py-6 scroll-smooth">
             {searchMode === 'ai' && (
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <AIAssistantPanel 
                   onResults={(res) => { setAiResponse(res); setAiError(null); }}
                   onError={(err) => setAiError(err)}
@@ -143,28 +138,28 @@ function SearchPageContent() {
 
                 {aiError && (
                   <div className="p-4 bg-red-50 text-red-600 rounded-xl border border-red-200">
-                    {aiError.message || "Une erreur s'est produite."}
+                    {aiError.message || "Une erreur s'est produite lors du traitement."}
                   </div>
                 )}
 
                 {aiResponse && (
-                  <div className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500 pt-4 border-t border-indigo-100">
                     <AISummaryCard summary={aiResponse.summary} detectedLanguage={aiResponse.detectedLanguage} />
                     
                     {aiResponse.recommendedScenario && (
                       <ScenarioCard scenario={aiResponse.recommendedScenario} language={aiResponse.detectedLanguage} />
                     )}
 
-                    <div className="bg-white rounded-xl shadow-sm border p-4 space-y-2">
-                       <h3 className="font-semibold text-gray-900">Médicaments détectés</h3>
+                    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 space-y-3">
+                       <h3 className="font-bold text-gray-900 border-b pb-2 mb-2">Médicaments traduits</h3>
                        <div className="flex flex-wrap gap-2">
                          {aiResponse.medications.map((m, i) => (
-                           <span key={i} className={`px-2 py-1 text-xs rounded-full border bg-emerald-50 text-emerald-700 border-emerald-200`}>
+                           <span key={i} className={`px-3 py-1.5 text-xs font-semibold rounded-lg border bg-emerald-50 text-emerald-700 border-emerald-200`}>
                              {m.cleanedName} {m.dosage && `(${m.dosage})`}
                            </span>
                          ))}
                          {aiResponse.unavailableMedications.map((m, i) => (
-                           <span key={`u-${i}`} className={`px-2 py-1 text-xs rounded-full border bg-red-50 text-red-700 border-red-200 line-through decoration-red-400`}>
+                           <span key={`u-${i}`} className={`px-3 py-1.5 text-xs font-semibold rounded-lg border bg-red-50 text-red-700 border-red-200 line-through decoration-red-400`}>
                              {m.cleanedName}
                            </span>
                          ))}
@@ -174,6 +169,18 @@ function SearchPageContent() {
                     {aiResponse.generatedRequestDraft && aiResponse.unavailableMedications.length > 0 && (
                       <UnavailableDraftEditor draft={aiResponse.generatedRequestDraft} language={aiResponse.detectedLanguage} />
                     )}
+                  </div>
+                )}
+
+                {aiResponse && mapResults.length > 0 && (
+                  <div className="pt-8 border-t border-gray-200">
+                     <h3 className="font-bold text-xl text-gray-900 mb-5">Pharmacies Optimales</h3>
+                     <SearchResults
+                        results={mapResults}
+                        isLoading={false}
+                        error={null}
+                        query={""}
+                      />
                   </div>
                 )}
               </div>
@@ -187,35 +194,24 @@ function SearchPageContent() {
                 query={q}
               />
             )}
-            
-            {searchMode === 'ai' && aiResponse && mapResults.length > 0 && (
-              <div className="pt-4 border-t">
-                 <h3 className="font-semibold text-gray-900 mb-4">Pharmacies recommandées</h3>
-                 <SearchResults
-                    results={mapResults}
-                    isLoading={false}
-                    error={null}
-                    query={""}
-                  />
-              </div>
-            )}
-          </div>
-
-          {/* Map panel — wrapped in error boundary so Leaflet crashes stay contained */}
-          <div className="hidden lg:block lg:w-1/2 h-full rounded-xl overflow-hidden relative z-0">
-            {searchMode === 'standard' && !isLoading && sortedResults.length > 0 && (
-              <MapErrorBoundary>
-                <PharmacyMap results={sortedResults} userLat={lat} userLng={lng} />
-              </MapErrorBoundary>
-            )}
-            {searchMode === 'ai' && mapResults.length > 0 && (
-               <MapErrorBoundary>
-                 <PharmacyMap results={mapResults} userLat={lat} userLng={lng} />
-               </MapErrorBoundary>
-            )}
           </div>
         </div>
+
+        {/* Right pane: Sticky Map Component occupying remaining 60% */}
+        <div className="hidden lg:block lg:w-[60%] flex-shrink-0 relative bg-gray-100/50 backdrop-blur-sm z-0">
+          {(searchMode === 'standard' && !isLoading && sortedResults.length > 0) || (searchMode === 'ai' && mapResults.length > 0) ? (
+            <MapErrorBoundary>
+              <PharmacyMap results={searchMode === 'standard' ? sortedResults : mapResults} userLat={lat} userLng={lng} />
+            </MapErrorBoundary>
+          ) : (
+            <div className="h-full flex flex-col items-center justify-center text-gray-400 pointer-events-none opacity-50 select-none">
+              <MapIcon className="w-24 h-24 mb-6 stroke-[1]" />
+              <p className="text-xl font-light">La zone de recherche interactive</p>
+            </div>
+          )}
+        </div>
       </div>
+
     </div>
   );
 }

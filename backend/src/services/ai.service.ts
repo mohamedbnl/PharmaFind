@@ -1,3 +1,4 @@
+
 import { geminiClient, GEMINI_MODEL } from '../config/gemini';
 import { ExtractionResult, SearchedMedication, Scenario, AIResponse } from '../types/ai';
 import { searchMedications } from './search.service';
@@ -270,3 +271,4 @@ function generateRequestDraft(lang: string, missing: { rawText: string, cleanedN
     message: `Bonjour, je cherche ces médicaments : ${medNames}. Sont-ils disponibles dans votre pharmacie ? Merci.`
   }
 }
+

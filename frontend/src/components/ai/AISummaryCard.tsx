@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Bot } from 'lucide-react';
 
@@ -24,6 +25,7 @@ export function AISummaryCard({ summary, detectedLanguage }: AISummaryCardProps)
           {summary}
         </p>
       </div>
-    </div>
-  );
+
+      </div>
+      );
 }

@@ -5,13 +5,15 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useMedicationAutocomplete, type AutocompleteResult } from '@/hooks/useMedications';
 import { useGeolocation } from '@/hooks/useGeolocation';
+import { Search, MapPin, Sparkles } from 'lucide-react';
 
 interface Props {
   initialQuery?: string;
   className?: string;
+  onAIToggle?: () => void;
 }
 
-export function SearchBar({ initialQuery = '', className }: Props) {
+export function SearchBar({ initialQuery = '', className, onAIToggle }: Props) {
   const t = useTranslations('home');
   const locale = useLocale();
   const router = useRouter();
@@ -25,7 +27,6 @@ export function SearchBar({ initialQuery = '', className }: Props) {
 
   const { data: suggestions = [], isFetching } = useMedicationAutocomplete(query);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (!inputRef.current?.parentElement?.contains(e.target as Node)) setOpen(false);
@@ -47,7 +48,6 @@ export function SearchBar({ initialQuery = '', className }: Props) {
     let finalLat = lat;
     let finalLng = lng;
 
-    // Auto-request location if not yet obtained
     if (!finalLat || !finalLng) {
       try {
         const pos = await new Promise<GeolocationPosition>((resolve, reject) =>
@@ -58,9 +58,7 @@ export function SearchBar({ initialQuery = '', className }: Props) {
         );
         finalLat = pos.coords.latitude;
         finalLng = pos.coords.longitude;
-      } catch {
-        // denied or unavailable — proceed without location
-      }
+      } catch {}
     }
 
     const params = new URLSearchParams(searchParams.toString());
@@ -73,15 +71,12 @@ export function SearchBar({ initialQuery = '', className }: Props) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={cn('relative w-full', className)}>
-      <div className="relative flex items-center">
+    <form onSubmit={handleSubmit} className={cn('relative w-full z-40', className)}>
+      <div className="relative group flex items-center bg-white rounded-2xl shadow-sm border border-gray-200 hover:shadow-md focus-within:shadow-md focus-within:ring-4 focus-within:ring-blue-100 focus-within:border-blue-300 transition-all duration-300 p-1.5 min-h-[60px]">
         {/* Search icon */}
-        <span className="pointer-events-none absolute start-3 text-gray-400">
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </span>
+        <div className="flex items-center justify-center w-12 text-gray-400">
+          <Search className="w-5 h-5" />
+        </div>
 
         <input
           ref={inputRef}
@@ -90,43 +85,57 @@ export function SearchBar({ initialQuery = '', className }: Props) {
           onChange={(e) => { setQuery(e.target.value); setSelectedMed(null); setOpen(true); }}
           onFocus={() => { if (query.length >= 2) setOpen(true); }}
           placeholder={t('searchPlaceholder')}
-          className="input-field input-with-icon-start pe-36 py-3 text-base"
+          className="flex-1 bg-transparent border-none outline-none text-gray-900 text-base placeholder:text-gray-400 w-full ps-2 pe-4 py-2"
           aria-autocomplete="list"
           aria-expanded={open}
           autoComplete="off"
         />
 
-        <button
-          type="button"
-          onClick={requestLocation}
-          className="absolute end-24 p-2 text-gray-400 hover:text-brand-600 transition"
-          title={t('locationPrompt')}
-        >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-        </button>
+        <div className="flex items-center gap-2 px-2 shrink-0">
+          <button
+            type="button"
+            onClick={requestLocation}
+            className="p-2.5 text-gray-400 hover:text-blue-600 hover:bg-blue-50 bg-white rounded-xl transition-colors duration-200"
+            title={t('locationPrompt')}
+          >
+            <MapPin className="w-5 h-5" />
+          </button>
+          
+          <div className="w-[1px] h-8 bg-gray-200 mx-1 hidden sm:block"></div>
 
-        <button type="submit" className="absolute end-1 btn-primary px-3 py-2 text-sm">
-          {t('searchButton')}
-        </button>
+          {onAIToggle && (
+            <button
+              type="button"
+              onClick={onAIToggle}
+              className="hidden sm:flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-all duration-200 hover:scale-[1.02]"
+              title={t('feature1Title')}
+            >
+              <Sparkles className="w-4 h-4" />
+              <span className="hidden md:inline">{t('feature1Title')}</span>
+              <span className="inline md:hidden">IA</span>
+            </button>
+          )}
+
+          <button type="submit" className="flex items-center justify-center px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors duration-200">
+            {t('searchButton')}
+          </button>
+        </div>
       </div>
 
       {/* Autocomplete dropdown */}
       {open && (query.length >= 2) && (
         <ul
           ref={listRef}
-          className="absolute z-50 mt-1 w-full rounded-lg border border-gray-200 bg-white shadow-lg"
+          className="absolute z-50 mt-2 w-full rounded-2xl border border-gray-100 bg-white shadow-xl overflow-hidden py-2"
           role="listbox"
         >
           {isFetching && (
-            <li className="px-4 py-3 text-sm text-gray-400">Recherche…</li>
+            <li className="px-5 py-4 text-sm text-gray-400 flex items-center justify-center">
+               <div className="w-5 h-5 border-2 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+            </li>
           )}
           {!isFetching && suggestions.length === 0 && (
-            <li className="px-4 py-3 text-sm text-gray-400">Aucun résultat</li>
+            <li className="px-5 py-4 text-sm text-gray-500 text-center">Aucun résultat trouvé</li>
           )}
           {suggestions.map((med) => (
             <li
@@ -134,16 +143,16 @@ export function SearchBar({ initialQuery = '', className }: Props) {
               role="option"
               aria-selected={selectedMed?.id === med.id}
               onMouseDown={() => handleSelect(med)}
-              className="flex cursor-pointer items-center gap-3 px-4 py-3 text-sm hover:bg-gray-50"
+              className="flex cursor-pointer items-center justify-between gap-4 px-5 py-3 text-sm hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-0"
             >
               <div className="flex-1 min-w-0">
-                <div className="font-medium text-gray-900 truncate">{med.nameFr}</div>
-                <div className="flex items-center gap-2 text-xs text-gray-500">
-                  {med.nameAr && <span className="font-arabic">{med.nameAr}</span>}
-                  {med.nameAr && <span>·</span>}
-                  <span>{med.form}</span>
-                  {med.dosage && <span>· {med.dosage}</span>}
-                  {med.dci && <span className="truncate">· {med.dci}</span>}
+                <div className="font-semibold text-gray-900 truncate text-base">{med.nameFr}</div>
+                <div className="flex flex-wrap items-center gap-1.5 text-xs text-gray-500 mt-1">
+                  {med.nameAr && <span className="font-arabic font-medium">{med.nameAr}</span>}
+                  {med.nameAr && <span className="text-gray-300">•</span>}
+                  <span className="font-medium bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">{med.form}</span>
+                  {med.dosage && <span className="font-medium bg-gray-100 px-1.5 py-0.5 rounded text-gray-600">{med.dosage}</span>}
+                  {med.dci && <span className="truncate text-gray-400">• {med.dci}</span>}
                 </div>
               </div>
             </li>

@@ -39,6 +39,7 @@
 | i18n | next-intl | App Router support, RTL-aware |
 | Maps | Leaflet 1.9+ / React-Leaflet 4+ | Free, no API key, OpenStreetMap tiles |
 | Backend | Node.js 20+ / Express 4 | |
+| AI Integration | Google GenAI SDK (Gemini 2.5 Flash) | Handles text and prescription image extraction |
 | Database | PostgreSQL 15+ with pg_trgm, PostGIS, uuid-ossp, unaccent | Fuzzy search + geospatial |
 | ORM | Prisma 5+ | Type-safe, schema-as-code |
 | Auth | JWT (access 15m + refresh 7d) | Pharmacist-only, stateless |
@@ -114,9 +115,9 @@ pharmafind/
 │       ├── index.ts
 │       ├── config/              # database.ts, env.ts, cors.ts
 │       ├── middleware/          # auth.ts, validate.ts, errorHandler.ts, rateLimiter.ts, logger.ts
-│       ├── routes/              # index.ts, auth/pharmacy/medication/stock/search/onDuty/report/alert .routes.ts
-│       ├── controllers/         # auth/pharmacy/medication/stock/search/onDuty/report/alert .controller.ts
-│       ├── services/            # auth/pharmacy/medication/stock/search/onDuty/report/alert/freshness .service.ts
+│       ├── routes/              # index.ts, ai.routes.ts, auth.routes.ts ...
+│       ├── controllers/         # ai.controller.ts, auth.controller.ts ...
+│       ├── services/            # ai.service.ts, auth.service.ts ...
 │       ├── validators/          # auth/pharmacy/medication/stock/search/report .validator.ts
 │       ├── utils/               # jwt.ts, password.ts, pagination.ts, geo.ts, errors.ts
 │       └── types/express.d.ts
@@ -351,13 +352,14 @@ Base URL: `http://localhost:3001/api/v1`
 ## 4. USER WORKFLOWS
 
 ### 4.1 Citizen Search Flow
-1. Landing page — hero search bar in French and Arabic
-2. Autocomplete fires after 2 characters; shows FR + AR matches with form/dosage
-3. Browser requests geolocation; if denied, show city selector
-4. Loading skeleton while API responds
-5. Results page — list left / map right (mobile: toggle); cards show pharmacy name, distance, stock status badge, freshness indicator, open/closed, WhatsApp button; sorted by distance default
-6. Pharmacy detail page — full stock list, operating hours, directions (Google Maps/Waze), WhatsApp button (`https://wa.me/212XXXXXXXXX`), feedback widget
-7. Feedback — thumbs up/down + optional comment → POST /reports
+1. Landing page — Redirects to /search in the preferred language.
+2. AI Assistant (Musa'id IA) — Users can describe needs in natural language or upload prescription images via Google Gemini.
+3. Standard Query — Autocomplete fires after 2 characters; shows FR + AR matches with form/dosage.
+4. Browser requests geolocation; if denied, show city selector.
+5. Loading skeleton while API responds.
+6. Results page — list left / map right (mobile: toggle); cards show pharmacy name, distance, stock status badge, freshness indicator, open/closed, WhatsApp button; sorted by distance default.
+7. Pharmacy detail page — full stock list, operating hours, directions (Google Maps/Waze), WhatsApp button (`https://wa.me/212XXXXXXXXX`), feedback widget.
+8. Feedback — thumbs up/down + optional comment → POST /reports
 
 ### 4.2 Pharmacist Dashboard Flow
 1. Login → JWT httpOnly cookie (access) + localStorage (refresh)
@@ -615,6 +617,8 @@ NEXT_PUBLIC_MAP_TILE_URL=https://tile.openstreetmap.org/{z}/{x}/{y}.png
 SEARCH_DEFAULT_RADIUS_KM=5
 SEARCH_MAX_RADIUS_KM=50
 TRGM_SIMILARITY_THRESHOLD=0.2
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
 ---

@@ -7,7 +7,15 @@
     "locationPrompt": "استخدام موقعي",
     "citySelector": "اختر مدينة",
     "onDutyButton": "صيدليات الحراسة الآن",
-    "onDutyBadge": "حراسة"
+    "onDutyBadge": "حراسة",
+    "heroCtaCitizen": "البحث عن دواء",
+    "heroCtaPharmacist": "فضاء الصيدلاني",
+    "feature1Title": "مساعد الذكاء الاصطناعي",
+    "feature1Desc": "ابحث بالاسم أو امسح وصفتك الطبية ضوئياً.",
+    "feature2Title": "التوفر الفوري",
+    "feature2Desc": "اطلع على المخزون الدقيق للصيدليات القريبة.",
+    "feature3Title": "صيدليات الحراسة",
+    "feature3Desc": "ابحث عن أقرب صيدلية مفتوحة، ليلاً ونهاراً."
   },
   "search": {
     "resultsTitle": "نتائج \"{query}\"",

@@ -2,11 +2,11 @@
 
 ## Prerequisites
 
-| Tool | Version | Check |
-|------|---------|-------|
-| Node.js | 20+ | `node -v` |
-| npm | 9+ | `npm -v` |
-| Git | any | `git --version` |
+| Tool    | Version | Check             |
+| ------- | ------- | ----------------- |
+| Node.js | 20+     | `node -v`       |
+| npm     | 9+      | `npm -v`        |
+| Git     | any     | `git --version` |
 
 No external database required — PharmaFind uses **SQLite** via Prisma.
 
@@ -18,11 +18,8 @@ No external database required — PharmaFind uses **SQLite** via Prisma.
 # From project root
 cd D:/ramdanAI
 
-# Backend
-cd backend && npm install
-
-# Frontend
-cd ../frontend && npm install
+# Install everything at once using strict workspace handling
+npm install --legacy-peer-deps
 ```
 
 ---
@@ -42,6 +39,10 @@ JWT_SECRET=<generate with: node -e "console.log(require('crypto').randomBytes(48
 NODE_ENV=development
 PORT=3001
 FRONTEND_URL=http://localhost:3000
+
+# NEW: Gemini AI API Key for OCR and AI Search
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
 Create `frontend/.env.local`:
@@ -77,6 +78,7 @@ npm run db:seed
 ```
 
 Expected output:
+
 ```
 Seeding medications...   ✓ 2,839 inserted
 Seeding pharmacies...    ✓ 158 inserted
@@ -85,6 +87,7 @@ Seed complete.
 ```
 
 Verify with Prisma Studio:
+
 ```bash
 npx prisma studio
 # Open http://localhost:5555 and check table row counts
@@ -92,43 +95,28 @@ npx prisma studio
 
 ---
 
-## Step 5 — Start the backend
+## Step 5 — Start the application
+
+You can start both the backend and frontend simultaneously from the root directory:
 
 ```bash
-cd backend
+# From project root
 npm run dev
 ```
 
-Server starts on **http://localhost:3001**
+The app handles both processes via `concurrently`:
+- **Backend API:** Starts on **http://localhost:3001**
+- **Frontend App:** Starts on **http://localhost:3000**
 
-Health check:
-```bash
-curl http://localhost:3001/health
-# → { "status": "ok" }
-```
-
----
-
-## Step 6 — Start the frontend
-
-Open a second terminal:
-
-```bash
-cd frontend
-npm run dev
-```
-
-Frontend starts on **http://localhost:3000**
-
-| URL | Page |
-|-----|------|
-| http://localhost:3000/fr | Home (French) |
-| http://localhost:3000/ar | Home (Arabic) |
-| http://localhost:3000/fr/search?q=doliprane | Search results |
-| http://localhost:3000/fr/on-duty | On-duty pharmacies |
-| http://localhost:3000/fr/auth/login | Pharmacist login |
-| http://localhost:3000/fr/auth/register | Pharmacist registration |
-| http://localhost:3000/fr/dashboard | Pharmacist dashboard |
+| URL                                         | Page                    |
+| ------------------------------------------- | ----------------------- |
+| http://localhost:3000/fr                    | Root (redirects to Search) |
+| http://localhost:3000/ar                    | Root (redirects to Search) |
+| http://localhost:3000/fr/search?q=doliprane | Search results          |
+| http://localhost:3000/fr/on-duty            | On-duty pharmacies      |
+| http://localhost:3000/fr/auth/login         | Pharmacist login        |
+| http://localhost:3000/fr/auth/register      | Pharmacist registration |
+| http://localhost:3000/fr/dashboard          | Pharmacist dashboard    |
 
 ---
 
@@ -179,13 +167,13 @@ npm start           # serves built app
 
 ## Common issues
 
-| Problem | Fix |
-|---------|-----|
-| `DATABASE_URL` missing | Make sure `backend/.env` exists with `DATABASE_URL=file:./prisma/pharmafind.db` |
-| `JWT_SECRET missing` | Make sure `backend/.env` exists and contains `JWT_SECRET` |
+| Problem                   | Fix                                                                                       |
+| ------------------------- | ----------------------------------------------------------------------------------------- |
+| `DATABASE_URL` missing  | Make sure `backend/.env` exists with `DATABASE_URL=file:./prisma/pharmafind.db`       |
+| `JWT_SECRET missing`    | Make sure `backend/.env` exists and contains `JWT_SECRET`                             |
 | `CORS error in browser` | Check that `FRONTEND_URL=http://localhost:3000` in `backend/.env` (no trailing slash) |
-| Prisma client out of date | Run `cd backend && npx prisma generate` |
-| Port already in use | Change `PORT=3001` in `backend/.env` and update `NEXT_PUBLIC_API_URL` accordingly |
+| Prisma client out of date | Run `cd backend && npx prisma generate`                                                 |
+| Port already in use       | Change `PORT=3001` in `backend/.env` and update `NEXT_PUBLIC_API_URL` accordingly   |
 
 ---
 

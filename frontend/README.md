@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PharmaFind - Frontend
+
+PharmaFind is a digital health platform to verify real-time medication availability. 
+This directory contains the Next.js `14.2.35` App Router frontend.
 
 ## Getting Started
 
-First, run the development server:
+The easiest way to run the frontend is to run `npm run dev` from the **root workspace directory**:
 
 ```bash
+cd D:/ramdanAI
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will run both the frontend and the backend using `concurrently`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework:** Next.js (App Router)
+- **i18n:** `next-intl`
+- **Map:** `react-leaflet` / `leaflet`
+- **State Mgmt / Fetching:** `@tanstack/react-query` & `zustand`
+- **Styling:** Tailwind CSS 3
+- **Icons:** `lucide-react`
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Multilingual Support:** First-class RTL (Arabic) & LTR (French) support via `next-intl`.
+- **AI Assistant Panel:** Allows users to query the server using natural language or uploaded prescription images using Google's Gemini Flash.
+- **Smart Mapping:** Shows available nearby pharmacies using `Leaflet`.
+- **Dashboard:** Pharmacists can claim their pharmacy and manage their stock inventory in real-time.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `src/app/` - Core routing mechanics and layout
+- `src/components/ui/` - Re-usable small elements like Buttons, Spinners.
+- `src/components/ai/` - Gemini AI specific components for analyzing prescriptions.
+- `messages/` - Localization JSON structures for French (`fr`) and Arabic (`ar`).

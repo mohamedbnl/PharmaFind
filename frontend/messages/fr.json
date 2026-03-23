@@ -7,7 +7,15 @@
     "locationPrompt": "Utiliser ma position",
     "citySelector": "Choisir une ville",
     "onDutyButton": "Pharmacies de garde maintenant",
-    "onDutyBadge": "De garde"
+    "onDutyBadge": "De garde",
+    "heroCtaCitizen": "Trouver un médicament",
+    "heroCtaPharmacist": "Espace Pharmacien",
+    "feature1Title": "Assistant IA (Musa'id IA)",
+    "feature1Desc": "Recherchez par nom ou scannez votre ordonnance.",
+    "feature2Title": "Disponibilité en Temps Réel",
+    "feature2Desc": "Voyez les stocks exacts des pharmacies proches.",
+    "feature3Title": "Pharmacies de Garde",
+    "feature3Desc": "Trouvez la pharmacie ouverte la plus proche, jour et nuit."
   },
   "search": {
     "resultsTitle": "Résultats pour \"{query}\"",

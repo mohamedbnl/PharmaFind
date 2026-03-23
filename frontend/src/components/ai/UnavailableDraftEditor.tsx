@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { MessageSquare, Copy, Check } from 'lucide-react';
 
@@ -51,11 +52,12 @@ export function UnavailableDraftEditor({ draft, language = 'fr' }: UnavailableDr
           dir={isRTL ? 'rtl' : 'ltr'}
         />
         <p className="text-xs text-gray-500 mt-2">
-          {uiRTL 
-            ? 'يمكنك تعديل هذه الرسالة وإرسالها للصيدليات القريبة للاستفسار.' 
+          {uiRTL
+            ? 'يمكنك تعديل هذه الرسالة وإرسالها للصيدليات القريبة للاستفسار.'
             : 'Vous pouvez modifier ce message et l\'envoyer aux pharmacies à proximité pour vous renseigner.'}
         </p>
       </div>
-    </div>
-  );
+
+      </div>
+      );
 }

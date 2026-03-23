@@ -19,6 +19,8 @@ JWT_SECRET=<64+ char random string>
 NODE_ENV=production
 FRONTEND_URL=https://pharmafind.ma
 PORT=3001
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-2.5-flash
 
 # frontend/.env.local
 NEXT_PUBLIC_API_URL=https://api.pharmafind.ma/api/v1

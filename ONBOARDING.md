@@ -81,6 +81,8 @@ Chaque médicament a 4 statuts :
 - **AR :** حدّث مخزونك مرة واحدة على الأقل يومياً، ويفضل صباحاً عند الفتح
 - **FR :** Si un médicament est souvent recherché mais que vous ne l'avez pas, ajoutez-le avec le statut "Indisponible" — cela aide les citoyens
 - **AR :** إذا كان دواء ما مطلوباً كثيراً وغير متوفر، أضفه بحالة "غير متوفر" — هذا يساعد المواطنين
+- **💡 FR :** Les citoyens utilisent l'**Assistant IA** pour scanner leurs ordonnances en photo. Vos stocks exacts feront la différence !
+- **💡 AR :** يستخدم المواطنون الآن **مساعد الذكاء الاصطناعي** لمسح وصفاتهم الطبية بالصور. دقة مخزونك ستحدث فرقاً كبيراً!
 
 ---
 

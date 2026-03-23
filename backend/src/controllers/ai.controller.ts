@@ -28,7 +28,7 @@ export async function analyzeImage(req: Request, res: Response, next: NextFuncti
 
     const mimeType = file.mimetype;
     if (!mimeType.startsWith('image/')) {
-        throw new AppError('INVALID_FILE_TYPE', 400, 'Uploaded file must be an image.');
+      throw new AppError('INVALID_FILE_TYPE', 400, 'Uploaded file must be an image.');
     }
 
     const result = await processAIImageRequest(file.buffer, mimeType, Number(lat), Number(lng), Number(radius) || undefined);

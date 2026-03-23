@@ -6,6 +6,7 @@ import * as pharmacyController from '../controllers/pharmacy.controller';
 const router = Router();
 
 router.get('/', publicLimiter, pharmacyController.list);
+router.get('/me', publicLimiter, authenticate, pharmacyController.getMine);
 router.post('/', writeLimiter, authenticate, pharmacyController.create);
 router.get('/:id/analytics', publicLimiter, authenticate, pharmacyController.analytics);
 router.put('/:id', writeLimiter, authenticate, pharmacyController.update);

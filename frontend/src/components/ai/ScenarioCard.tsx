@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Route, MapPin } from 'lucide-react';
 import { Scenario } from '@/types/ai';
@@ -24,7 +25,7 @@ export function ScenarioCard({ scenario, language = 'fr' }: ScenarioCardProps) {
         <p className="text-emerald-800 text-sm mb-2">
           {scenario.message}
         </p>
-        
+
         {scenario.totalDistanceKm !== null && (
           <div className="flex items-center gap-1 text-emerald-700 text-sm font-medium mt-2">
             <MapPin className="w-4 h-4" />
@@ -33,7 +34,8 @@ export function ScenarioCard({ scenario, language = 'fr' }: ScenarioCardProps) {
             </span>
           </div>
         )}
-      </div>
-    </div>
-  );
+
+          </div>
+        </div>
+        );
 }

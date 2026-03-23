@@ -117,6 +117,23 @@ Si un médicament est introuvable :
 
 ---
 
+### 2.8 Assistant IA / مساعد الذكاء الاصطناعي
+
+Pour une recherche plus intelligente, utilisez l'Assistant IA :
+1. Cliquez sur l'icône de l'**Assistant IA (مساعد الذكاء الاصطناعي)**.
+2. Décrivez vos besoins en langage naturel (ex: "Je cherche du Doliprane 1000 et de l'Augmentin 1g").
+3. OU prenez une photo / téléchargez une image de votre **ordonnance médicale**.
+4. L'IA extrait automatiquement les médicaments, gère les typos, et trouve les pharmacies qui ont _exactement_ ce dont vous avez besoin en calculant le meilleur itinéraire.
+
+---
+
+1. يمكنكم استخدام **مساعد الذكاء الاصطناعي** لبحث أذكى.
+2. اكتب طلبك بشكل طبيعي (مثل: "بغيت دوليبران 1000 وأوجمنتين 1غ").
+3. أو قم برفع **صورة الوصفة الطبية** (L'ordonnance).
+4. يقوم الذكاء الاصطناعي باستخراج الأدوية منها آلياً ويحدد الصيدليات التي تتوفر عليها كلها لحساب أفضل مسار.
+
+---
+
 ## 3. Guide pharmacien / دليل الصيدلاني
 
 ### 3.1 Créer un compte / إنشاء حساب

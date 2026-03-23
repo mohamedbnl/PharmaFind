@@ -18,7 +18,7 @@ export function AIAssistantPanel({ onResults, onError, onClear }: AIAssistantPan
 
   const handleTextSubmit = async () => {
     if (!text.trim()) return;
-    
+
     setIsLoading(true);
     try {
       // Pass dummy location for demo purposes (Tangier coords for PharmaFind sample data)
